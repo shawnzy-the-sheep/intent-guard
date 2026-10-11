@@ -8,5 +8,6 @@
     "@ux-guard-pipeline/shared": "workspace:*",
     "zod": "^4.1.0",
     "yaml": "^2.8.0"
-  }
+  },
+  "license": "MIT"
 }

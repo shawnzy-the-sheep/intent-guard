@@ -10,5 +10,6 @@
     "@ux-guard-pipeline/evidence": "workspace:*",
     "playwright": "^1.56.0",
     "@axe-core/playwright": "^4.10.0"
-  }
+  },
+  "license": "MIT"
 }

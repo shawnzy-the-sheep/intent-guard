@@ -9,5 +9,6 @@
     "@ux-guard-pipeline/evaluator": "workspace:*",
     "@ux-guard-pipeline/shared": "workspace:*",
     "sharp": "^0.34.0"
-  }
+  },
+  "license": "MIT"
 }

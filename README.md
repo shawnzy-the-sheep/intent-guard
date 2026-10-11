@@ -127,3 +127,7 @@ UXBench contains 20 synthetic good/bad pairs. `pnpm bench` runs all 40 states wi
 Version 0.1 includes the three checks, CLI, demo, reports, caching, multiple viewport support, and a GitHub Actions workflow. Diff-based execution, interaction-cost checks, comparisons across UI states, authenticated role fixtures, and a GitHub App are still pending.
 
 More detail: [architecture](docs/architecture/pipeline.md), [contract format](docs/contracts/v1.md), [implementation status](docs/implementation-status.md), [evaluation notes](docs/evaluation/README.md), and [local verification](docs/verification.md).
+
+## License
+
+[MIT](LICENSE). Copyright 2026 Shawn Wong.

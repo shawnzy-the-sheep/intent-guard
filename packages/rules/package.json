@@ -7,5 +7,6 @@
   "dependencies": {
     "@ux-guard-pipeline/contracts": "workspace:*",
     "@ux-guard-pipeline/evidence": "workspace:*"
-  }
+  },
+  "license": "MIT"
 }

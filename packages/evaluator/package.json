@@ -8,5 +8,6 @@
     "@ux-guard-pipeline/contracts": "workspace:*",
     "@ux-guard-pipeline/evidence": "workspace:*",
     "zod": "^4.1.0"
-  }
+  },
+  "license": "MIT"
 }

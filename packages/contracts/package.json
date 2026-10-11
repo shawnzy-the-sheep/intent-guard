@@ -1,0 +1,12 @@
+{
+  "name": "@intentguard/contracts",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": "./dist/index.js",
+  "dependencies": {
+    "@intentguard/shared": "workspace:*",
+    "zod": "^4.1.0",
+    "yaml": "^2.8.0"
+  }
+}

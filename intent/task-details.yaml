@@ -1,0 +1,33 @@
+version: 1
+id: task-details
+page:
+  route: /demo/good
+user:
+  role: operator
+goal:
+  primary: understand_and_act_on_current_task
+entities:
+  current_task:
+    priority: primary
+    selectors: ["[data-entity='task']"]
+  parent_job:
+    priority: contextual
+    selectors: ["[data-entity='parent-job']"]
+actions:
+  continue_task:
+    priority: primary
+    selectors: ["[data-action='continue-task']"]
+intents:
+  - id: task-primary-focus
+    type: hierarchy
+    subject: current_task
+    relativeTo: parent_job
+    expectation: dominant
+  - id: parent-job-context
+    type: semantic_ownership
+    subject: parent_job
+    expectation: contextual
+  - id: continue-action-visible
+    type: action_discoverability
+    subject: continue_task
+    expectation: immediate

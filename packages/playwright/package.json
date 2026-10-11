@@ -1,0 +1,14 @@
+{
+  "name": "@intentguard/playwright",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": "./dist/index.js",
+  "dependencies": {
+    "@intentguard/shared": "workspace:*",
+    "@intentguard/contracts": "workspace:*",
+    "@intentguard/evidence": "workspace:*",
+    "playwright": "^1.56.0",
+    "@axe-core/playwright": "^4.10.0"
+  }
+}

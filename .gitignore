@@ -1,0 +1,9 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.intentguard/
+.env
+.env.*
+!.env.example
+coverage/
+tmp/

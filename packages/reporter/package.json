@@ -1,0 +1,13 @@
+{
+  "name": "@intentguard/reporter",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": "./dist/index.js",
+  "dependencies": {
+    "@intentguard/evidence": "workspace:*",
+    "@intentguard/evaluator": "workspace:*",
+    "@intentguard/shared": "workspace:*",
+    "sharp": "^0.34.0"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "files": [],
+  "references": [
+    {
+      "path": "packages/shared"
+    },
+    {
+      "path": "packages/contracts"
+    },
+    {
+      "path": "packages/evidence"
+    },
+    {
+      "path": "packages/rules"
+    },
+    {
+      "path": "packages/playwright"
+    },
+    {
+      "path": "packages/evaluator"
+    },
+    {
+      "path": "packages/reporter"
+    },
+    {
+      "path": "packages/core"
+    },
+    {
+      "path": "packages/cli"
+    }
+  ]
+}

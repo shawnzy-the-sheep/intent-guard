@@ -1,0 +1,19 @@
+version: 1
+id: apple-mac-navigation-regression
+page:
+  route: /mac/
+user:
+  role: signed-out public visitor
+goal:
+  primary: Find the site search from the Mac category page
+entities: {}
+actions:
+  primary_action:
+    priority: primary
+    selectors:
+      - '#globalnav-menubutton-link-search'
+intents:
+  - id: apple-mac-navigation-regression-intent
+    type: action_discoverability
+    subject: primary_action
+    expectation: discoverable

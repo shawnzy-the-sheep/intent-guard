@@ -1,0 +1,20 @@
+version: 1
+id: apple-home-learn-regression
+page:
+  route: /
+user:
+  role: signed-out public visitor
+goal:
+  primary: Find information about the first featured Apple product
+entities: {}
+actions:
+  primary_action:
+    priority: primary
+    selectors:
+      - main .tile-wrapper:has(a.button[aria-label="Learn more, iPhone 18 Pro"])
+        a.button[data-analytics-region="learn more"]
+intents:
+  - id: apple-home-learn-regression-intent
+    type: action_discoverability
+    subject: primary_action
+    expectation: discoverable

@@ -1,0 +1,26 @@
+version: 1
+id: apple-home-heading-baseline
+page:
+  route: /
+user:
+  role: signed-out public visitor
+goal:
+  primary: Identify the first featured Apple product
+entities:
+  primary:
+    priority: primary
+    selectors:
+      - main .tile-wrapper:has(a.button[aria-label="Learn more, iPhone 18 Pro"])
+        .tile-headline
+  context:
+    priority: contextual
+    selectors:
+      - main .tile-wrapper:has(a.button[aria-label="Learn more, iPhone 18 Pro"])
+        .tile-subhead
+actions: {}
+intents:
+  - id: apple-home-heading-baseline-intent
+    type: hierarchy
+    subject: primary
+    relativeTo: context
+    expectation: dominant

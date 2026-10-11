@@ -1,0 +1,63 @@
+[
+  {
+    "id": "apple-home-learn",
+    "url": "https://www.apple.com/",
+    "type": "action_discoverability",
+    "subject": "main .tile-wrapper:has(a.button[aria-label=\"Learn more, iPhone 18 Pro\"]) a.button[data-analytics-region=\"learn more\"]",
+    "expectation": "discoverable",
+    "goal": "Find information about the first featured Apple product",
+    "rationale": "The selected control should be available in the initial viewport; the control run changes only its local DOM presentation.",
+    "mutation": "hide",
+    "baselineExpected": "PASS",
+    "regressionExpected": "REVIEW"
+  },
+  {
+    "id": "apple-home-heading",
+    "url": "https://www.apple.com/",
+    "type": "hierarchy",
+    "subject": "main .tile-wrapper:has(a.button[aria-label=\"Learn more, iPhone 18 Pro\"]) .tile-headline",
+    "relativeTo": "main .tile-wrapper:has(a.button[aria-label=\"Learn more, iPhone 18 Pro\"]) .tile-subhead",
+    "expectation": "dominant",
+    "goal": "Identify the first featured Apple product",
+    "rationale": "The product headline should dominate its secondary copy.",
+    "mutation": "promote-context",
+    "baselineExpected": "PASS",
+    "regressionExpected": "REVIEW"
+  },
+  {
+    "id": "apple-mac-navigation",
+    "url": "https://www.apple.com/mac/",
+    "type": "action_discoverability",
+    "subject": "#globalnav-menubutton-link-search",
+    "expectation": "discoverable",
+    "goal": "Find the site search from the Mac category page",
+    "rationale": "The selected control should be available in the initial viewport; the control run changes only its local DOM presentation.",
+    "mutation": "offscreen",
+    "baselineExpected": "PASS",
+    "regressionExpected": "REVIEW"
+  },
+  {
+    "id": "clickup-home-start",
+    "url": "https://clickup.com/",
+    "type": "action_discoverability",
+    "subject": "main button[class*=HomeHeroLongTitle_ctaButton]",
+    "expectation": "discoverable",
+    "goal": "Find the main Get started action on ClickUp",
+    "rationale": "The selected control should be available in the initial viewport; the control run changes only its local DOM presentation.",
+    "mutation": "disable",
+    "baselineExpected": "PASS",
+    "regressionExpected": "REVIEW"
+  },
+  {
+    "id": "notion-home-start",
+    "url": "https://www.notion.com/",
+    "type": "action_discoverability",
+    "subject": "main a[class*=HeroCTA][href^=\"/signup\"]",
+    "expectation": "discoverable",
+    "goal": "Find the main Get Notion free action on Notion",
+    "rationale": "The selected control should be available in the initial viewport; the control run changes only its local DOM presentation.",
+    "mutation": "hide",
+    "baselineExpected": "PASS",
+    "regressionExpected": "REVIEW"
+  }
+]

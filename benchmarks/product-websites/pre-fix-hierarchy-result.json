@@ -1,0 +1,21 @@
+{
+  "expected": "REVIEW",
+  "actual": "PASS",
+  "timestamp": "2026-10-11T14:38:45.007Z",
+  "artifactDirectory": ".ux-guard-pipeline/product-websites/runs/7cd6e05f-8433-44ab-a622-21717eff7dca-apple-home-heading-regression-1280x800",
+  "reason": "Transparent empty card link was treated as visual occlusion, zeroing both hierarchy scores.",
+  "elements": [
+    {
+      "id": "e34",
+      "text": "iPhone 18 Pro",
+      "occluded": true,
+      "salience": 0
+    },
+    {
+      "id": "e188",
+      "text": "Pro further.",
+      "occluded": true,
+      "salience": 0
+    }
+  ]
+}

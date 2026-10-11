@@ -1,5 +1,5 @@
 import { readFile, mkdir, writeFile } from 'node:fs/promises';
-import { resolve, relative } from 'node:path';
+import { resolve, relative, basename } from 'node:path';
 import { stringify } from 'yaml';
 import { launchBrowser } from '../packages/playwright/dist/index.js';
 import { UXContractSchema } from '../packages/contracts/dist/index.js';
@@ -8,10 +8,11 @@ import { runContract } from '../packages/core/dist/runContract.js';
 
 // The collector and runner are unchanged. This browser wrapper waits for public
 // page rendering and applies explicit controls only to an isolated local DOM.
+const suiteDir = resolve(process.argv[2] || 'benchmarks/public-websites');
 const cases = JSON.parse(
-  await readFile('benchmarks/public-websites/cases.json', 'utf8'),
+  await readFile(resolve(suiteDir, 'cases.json'), 'utf8'),
 );
-const outputDir = resolve('.ux-guard-pipeline/public-websites');
+const outputDir = resolve('.ux-guard-pipeline', basename(suiteDir));
 await mkdir(outputDir, { recursive: true });
 const browser = await launchBrowser();
 const results = [];
@@ -56,9 +57,9 @@ try {
           },
         ],
       });
-      await mkdir('benchmarks/public-websites/contracts', { recursive: true });
+      await mkdir(resolve(suiteDir, 'contracts'), { recursive: true });
       await writeFile(
-        `benchmarks/public-websites/contracts/${id}.yaml`,
+        resolve(suiteDir, 'contracts', `${id}.yaml`),
         stringify(contract),
       );
       let mutationApplied = false;
@@ -234,7 +235,7 @@ const summary = {
   results,
 };
 await writeFile(
-  'benchmarks/public-websites/results.json',
+  resolve(suiteDir, 'results.json'),
   JSON.stringify(summary, null, 2) + '\n',
 );
 console.log(JSON.stringify({ ...summary, results: undefined }, null, 2));

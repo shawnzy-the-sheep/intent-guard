@@ -1,0 +1,19 @@
+version: 1
+id: clickup-home-start-regression
+page:
+  route: /
+user:
+  role: signed-out public visitor
+goal:
+  primary: Find the main Get started action on ClickUp
+entities: {}
+actions:
+  primary_action:
+    priority: primary
+    selectors:
+      - main button[class*=HomeHeroLongTitle_ctaButton]
+intents:
+  - id: clickup-home-start-regression-intent
+    type: action_discoverability
+    subject: primary_action
+    expectation: discoverable

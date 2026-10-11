@@ -1,0 +1,502 @@
+{
+  "capturedAt": "2026-10-11T14:41:57.057Z",
+  "mode": "deterministic-only",
+  "liveConfigured": false,
+  "labels": "Authored expectations declared before execution; no independent human labels",
+  "cases": 10,
+  "matched": 10,
+  "falsePositiveSuspicions": 0,
+  "misses": 0,
+  "inconclusive": 0,
+  "errors": 0,
+  "results": [
+    {
+      "id": "apple-home-learn-baseline",
+      "url": "https://www.apple.com/",
+      "finalURL": "https://www.apple.com/",
+      "httpStatus": 200,
+      "loadTimedOut": false,
+      "stylesheetStatus": {
+        "total": 10,
+        "unavailable": 0
+      },
+      "variant": "baseline",
+      "type": "action_discoverability",
+      "selectors": {
+        "subject": "main .tile-wrapper:has(a.button[aria-label=\"Learn more, iPhone 18 Pro\"]) a.button[data-analytics-region=\"learn more\"]"
+      },
+      "selectorCounts": {
+        "subject": 1
+      },
+      "collection": {
+        "elements": 187,
+        "truncated": false
+      },
+      "mutation": null,
+      "mutationApplied": false,
+      "expected": "PASS",
+      "actual": "PASS",
+      "matchesExpected": true,
+      "rationale": "The selected control should be available in the initial viewport; the control run changes only its local DOM presentation.",
+      "timestamp": "2026-10-11T14:41:07.093Z",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "explanation": "No relevant deterministic suspicion found; AI was not invoked.",
+      "evidenceIds": [],
+      "signals": [],
+      "incomplete": false,
+      "aiCalls": 0,
+      "source": "deterministic",
+      "latencyMs": 3864,
+      "artifacts": ".ux-guard-pipeline/product-websites/runs/32989c22-0f97-4398-a28e-545f06a5420e-apple-home-learn-baseline-1280x800"
+    },
+    {
+      "id": "apple-home-learn-regression",
+      "url": "https://www.apple.com/",
+      "finalURL": "https://www.apple.com/",
+      "httpStatus": 200,
+      "loadTimedOut": false,
+      "stylesheetStatus": {
+        "total": 10,
+        "unavailable": 0
+      },
+      "variant": "regression",
+      "type": "action_discoverability",
+      "selectors": {
+        "subject": "main .tile-wrapper:has(a.button[aria-label=\"Learn more, iPhone 18 Pro\"]) a.button[data-analytics-region=\"learn more\"]"
+      },
+      "selectorCounts": {
+        "subject": 1
+      },
+      "collection": {
+        "elements": 187,
+        "truncated": false
+      },
+      "mutation": "hide",
+      "mutationApplied": true,
+      "expected": "REVIEW",
+      "actual": "REVIEW",
+      "matchesExpected": true,
+      "rationale": "The selected control should be available in the initial viewport; the control run changes only its local DOM presentation.",
+      "timestamp": "2026-10-11T14:41:11.079Z",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "explanation": "Deterministic conflict: primary_action is present but hidden.",
+      "evidenceIds": ["e35", "e32"],
+      "signals": [
+        {
+          "intentId": "apple-home-learn-regression-intent",
+          "type": "visibility",
+          "severity": "HIGH",
+          "explanation": "primary_action is present but hidden.",
+          "evidenceIds": ["e35", "e32"],
+          "facts": {
+            "visible": false
+          },
+          "definitive": true
+        }
+      ],
+      "incomplete": false,
+      "aiCalls": 0,
+      "source": "deterministic",
+      "latencyMs": 3922,
+      "artifacts": ".ux-guard-pipeline/product-websites/runs/14dfca05-79e6-4d7e-81c2-341240c926b4-apple-home-learn-regression-1280x800"
+    },
+    {
+      "id": "apple-home-heading-baseline",
+      "url": "https://www.apple.com/",
+      "finalURL": "https://www.apple.com/",
+      "httpStatus": 200,
+      "loadTimedOut": false,
+      "stylesheetStatus": {
+        "total": 10,
+        "unavailable": 0
+      },
+      "variant": "baseline",
+      "type": "hierarchy",
+      "selectors": {
+        "subject": "main .tile-wrapper:has(a.button[aria-label=\"Learn more, iPhone 18 Pro\"]) .tile-headline",
+        "relativeTo": "main .tile-wrapper:has(a.button[aria-label=\"Learn more, iPhone 18 Pro\"]) .tile-subhead"
+      },
+      "selectorCounts": {
+        "subject": 1,
+        "relativeTo": 1
+      },
+      "collection": {
+        "elements": 188,
+        "truncated": false
+      },
+      "mutation": null,
+      "mutationApplied": false,
+      "expected": "PASS",
+      "actual": "PASS",
+      "matchesExpected": true,
+      "rationale": "The product headline should dominate its secondary copy.",
+      "timestamp": "2026-10-11T14:41:15.459Z",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "explanation": "No relevant deterministic suspicion found; AI was not invoked.",
+      "evidenceIds": [],
+      "signals": [],
+      "incomplete": false,
+      "aiCalls": 0,
+      "source": "deterministic",
+      "latencyMs": 3852,
+      "artifacts": ".ux-guard-pipeline/product-websites/runs/387e4920-72df-4cba-9bdb-00a2e010f020-apple-home-heading-baseline-1280x800"
+    },
+    {
+      "id": "apple-home-heading-regression",
+      "url": "https://www.apple.com/",
+      "finalURL": "https://www.apple.com/",
+      "httpStatus": 200,
+      "loadTimedOut": false,
+      "stylesheetStatus": {
+        "total": 10,
+        "unavailable": 0
+      },
+      "variant": "regression",
+      "type": "hierarchy",
+      "selectors": {
+        "subject": "main .tile-wrapper:has(a.button[aria-label=\"Learn more, iPhone 18 Pro\"]) .tile-headline",
+        "relativeTo": "main .tile-wrapper:has(a.button[aria-label=\"Learn more, iPhone 18 Pro\"]) .tile-subhead"
+      },
+      "selectorCounts": {
+        "subject": 1,
+        "relativeTo": 1
+      },
+      "collection": {
+        "elements": 188,
+        "truncated": false
+      },
+      "mutation": "promote-context",
+      "mutationApplied": true,
+      "expected": "REVIEW",
+      "actual": "REVIEW",
+      "matchesExpected": true,
+      "rationale": "The product headline should dominate its secondary copy.",
+      "timestamp": "2026-10-11T14:41:19.386Z",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "explanation": "Deterministic suspicion (semantic judgment skipped): Contextual element has greater salience than the expected dominant entity (0.96 vs 0.54).",
+      "evidenceIds": ["e34", "e188"],
+      "signals": [
+        {
+          "intentId": "apple-home-heading-regression-intent",
+          "type": "hierarchy",
+          "severity": "MEDIUM",
+          "explanation": "Contextual element has greater salience than the expected dominant entity (0.96 vs 0.54).",
+          "evidenceIds": ["e34", "e188"],
+          "facts": {
+            "primarySalience": 0.5404,
+            "contextualSalience": 0.9644,
+            "ratio": 1.15
+          },
+          "definitive": false
+        }
+      ],
+      "incomplete": false,
+      "aiCalls": 0,
+      "source": "deterministic",
+      "latencyMs": 3993,
+      "artifacts": ".ux-guard-pipeline/product-websites/runs/3a080e12-e05a-401d-b1dc-e5ba52578e10-apple-home-heading-regression-1280x800"
+    },
+    {
+      "id": "apple-mac-navigation-baseline",
+      "url": "https://www.apple.com/mac/",
+      "finalURL": "https://www.apple.com/mac/",
+      "httpStatus": 200,
+      "loadTimedOut": false,
+      "stylesheetStatus": {
+        "total": 32,
+        "unavailable": 0
+      },
+      "variant": "baseline",
+      "type": "action_discoverability",
+      "selectors": {
+        "subject": "#globalnav-menubutton-link-search"
+      },
+      "selectorCounts": {
+        "subject": 1
+      },
+      "collection": {
+        "elements": 307,
+        "truncated": false
+      },
+      "mutation": null,
+      "mutationApplied": false,
+      "expected": "PASS",
+      "actual": "PASS",
+      "matchesExpected": true,
+      "rationale": "The selected control should be available in the initial viewport; the control run changes only its local DOM presentation.",
+      "timestamp": "2026-10-11T14:41:23.795Z",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "explanation": "No relevant deterministic suspicion found; AI was not invoked.",
+      "evidenceIds": [],
+      "signals": [],
+      "incomplete": false,
+      "aiCalls": 0,
+      "source": "deterministic",
+      "latencyMs": 5456,
+      "artifacts": ".ux-guard-pipeline/product-websites/runs/29bd2649-99b5-4485-b17c-d83de6b1f3ef-apple-mac-navigation-baseline-1280x800"
+    },
+    {
+      "id": "apple-mac-navigation-regression",
+      "url": "https://www.apple.com/mac/",
+      "finalURL": "https://www.apple.com/mac/",
+      "httpStatus": 200,
+      "loadTimedOut": false,
+      "stylesheetStatus": {
+        "total": 32,
+        "unavailable": 0
+      },
+      "variant": "regression",
+      "type": "action_discoverability",
+      "selectors": {
+        "subject": "#globalnav-menubutton-link-search"
+      },
+      "selectorCounts": {
+        "subject": 1
+      },
+      "collection": {
+        "elements": 307,
+        "truncated": false
+      },
+      "mutation": "offscreen",
+      "mutationApplied": true,
+      "expected": "REVIEW",
+      "actual": "REVIEW",
+      "matchesExpected": true,
+      "rationale": "The selected control should be available in the initial viewport; the control run changes only its local DOM presentation.",
+      "timestamp": "2026-10-11T14:41:29.376Z",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "explanation": "Deterministic conflict: Declared action is outside the viewport, obscured, disabled or not interactive.",
+      "evidenceIds": ["e28", "e31", "e42"],
+      "signals": [
+        {
+          "intentId": "apple-mac-navigation-regression-intent",
+          "type": "action_discoverability",
+          "severity": "HIGH",
+          "explanation": "Declared action is outside the viewport, obscured, disabled or not interactive.",
+          "evidenceIds": ["e28", "e31", "e42"],
+          "facts": {
+            "rank": 0,
+            "available": false
+          },
+          "definitive": true
+        }
+      ],
+      "incomplete": false,
+      "aiCalls": 0,
+      "source": "deterministic",
+      "latencyMs": 4930,
+      "artifacts": ".ux-guard-pipeline/product-websites/runs/c6b7974b-9278-49c4-b9ee-3f2399e3bd9d-apple-mac-navigation-regression-1280x800"
+    },
+    {
+      "id": "clickup-home-start-baseline",
+      "url": "https://clickup.com/",
+      "finalURL": "https://clickup.com/",
+      "httpStatus": 200,
+      "loadTimedOut": false,
+      "stylesheetStatus": {
+        "total": 9,
+        "unavailable": 0
+      },
+      "variant": "baseline",
+      "type": "action_discoverability",
+      "selectors": {
+        "subject": "main button[class*=HomeHeroLongTitle_ctaButton]"
+      },
+      "selectorCounts": {
+        "subject": 1
+      },
+      "collection": {
+        "elements": 197,
+        "truncated": false
+      },
+      "mutation": null,
+      "mutationApplied": false,
+      "expected": "PASS",
+      "actual": "PASS",
+      "matchesExpected": true,
+      "rationale": "The selected control should be available in the initial viewport; the control run changes only its local DOM presentation.",
+      "timestamp": "2026-10-11T14:41:34.857Z",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "explanation": "No relevant deterministic suspicion found; AI was not invoked.",
+      "evidenceIds": [],
+      "signals": [],
+      "incomplete": false,
+      "aiCalls": 0,
+      "source": "deterministic",
+      "latencyMs": 6480,
+      "artifacts": ".ux-guard-pipeline/product-websites/runs/bfa0e836-4c07-4214-a765-3ea4e10eac3f-clickup-home-start-baseline-1280x800"
+    },
+    {
+      "id": "clickup-home-start-regression",
+      "url": "https://clickup.com/",
+      "finalURL": "https://clickup.com/",
+      "httpStatus": 200,
+      "loadTimedOut": false,
+      "stylesheetStatus": {
+        "total": 9,
+        "unavailable": 0
+      },
+      "variant": "regression",
+      "type": "action_discoverability",
+      "selectors": {
+        "subject": "main button[class*=HomeHeroLongTitle_ctaButton]"
+      },
+      "selectorCounts": {
+        "subject": 1
+      },
+      "collection": {
+        "elements": 197,
+        "truncated": false
+      },
+      "mutation": "disable",
+      "mutationApplied": true,
+      "expected": "REVIEW",
+      "actual": "REVIEW",
+      "matchesExpected": true,
+      "rationale": "The selected control should be available in the initial viewport; the control run changes only its local DOM presentation.",
+      "timestamp": "2026-10-11T14:41:41.515Z",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "explanation": "Deterministic conflict: Declared action is outside the viewport, obscured, disabled or not interactive.",
+      "evidenceIds": ["e15", "e13", "e18"],
+      "signals": [
+        {
+          "intentId": "clickup-home-start-regression-intent",
+          "type": "action_discoverability",
+          "severity": "HIGH",
+          "explanation": "Declared action is outside the viewport, obscured, disabled or not interactive.",
+          "evidenceIds": ["e15", "e13", "e18"],
+          "facts": {
+            "rank": 0,
+            "available": false
+          },
+          "definitive": true
+        }
+      ],
+      "incomplete": false,
+      "aiCalls": 0,
+      "source": "deterministic",
+      "latencyMs": 7338,
+      "artifacts": ".ux-guard-pipeline/product-websites/runs/5e26893d-af59-4e91-87fb-fc4a324a80c0-clickup-home-start-regression-1280x800"
+    },
+    {
+      "id": "notion-home-start-baseline",
+      "url": "https://www.notion.com/",
+      "finalURL": "https://www.notion.com/",
+      "httpStatus": 200,
+      "loadTimedOut": false,
+      "stylesheetStatus": {
+        "total": 18,
+        "unavailable": 0
+      },
+      "variant": "baseline",
+      "type": "action_discoverability",
+      "selectors": {
+        "subject": "main a[class*=HeroCTA][href^=\"/signup\"]"
+      },
+      "selectorCounts": {
+        "subject": 1
+      },
+      "collection": {
+        "elements": 76,
+        "truncated": false
+      },
+      "mutation": null,
+      "mutationApplied": false,
+      "expected": "PASS",
+      "actual": "PASS",
+      "matchesExpected": true,
+      "rationale": "The selected control should be available in the initial viewport; the control run changes only its local DOM presentation.",
+      "timestamp": "2026-10-11T14:41:49.798Z",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "explanation": "No relevant deterministic suspicion found; AI was not invoked.",
+      "evidenceIds": [],
+      "signals": [],
+      "incomplete": false,
+      "aiCalls": 0,
+      "source": "deterministic",
+      "latencyMs": 3526,
+      "artifacts": ".ux-guard-pipeline/product-websites/runs/be5d5f63-547b-4023-8ccb-29ee4296e475-notion-home-start-baseline-1280x800"
+    },
+    {
+      "id": "notion-home-start-regression",
+      "url": "https://www.notion.com/",
+      "finalURL": "https://www.notion.com/",
+      "httpStatus": 200,
+      "loadTimedOut": false,
+      "stylesheetStatus": {
+        "total": 18,
+        "unavailable": 0
+      },
+      "variant": "regression",
+      "type": "action_discoverability",
+      "selectors": {
+        "subject": "main a[class*=HeroCTA][href^=\"/signup\"]"
+      },
+      "selectorCounts": {
+        "subject": 1
+      },
+      "collection": {
+        "elements": 76,
+        "truncated": false
+      },
+      "mutation": "hide",
+      "mutationApplied": true,
+      "expected": "REVIEW",
+      "actual": "REVIEW",
+      "matchesExpected": true,
+      "rationale": "The selected control should be available in the initial viewport; the control run changes only its local DOM presentation.",
+      "timestamp": "2026-10-11T14:41:53.378Z",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "explanation": "Deterministic conflict: primary_action is present but hidden.",
+      "evidenceIds": ["e11", "e9"],
+      "signals": [
+        {
+          "intentId": "notion-home-start-regression-intent",
+          "type": "visibility",
+          "severity": "HIGH",
+          "explanation": "primary_action is present but hidden.",
+          "evidenceIds": ["e11", "e9"],
+          "facts": {
+            "visible": false
+          },
+          "definitive": true
+        }
+      ],
+      "incomplete": false,
+      "aiCalls": 0,
+      "source": "deterministic",
+      "latencyMs": 3247,
+      "artifacts": ".ux-guard-pipeline/product-websites/runs/5b24a447-2b77-464b-8176-c4d70e27f336-notion-home-start-regression-1280x800"
+    }
+  ]
+}

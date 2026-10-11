@@ -1,0 +1,476 @@
+{
+  "capturedAt": "2026-10-11T14:30:41.619Z",
+  "mode": "deterministic-only",
+  "liveConfigured": false,
+  "labels": "Authored expectations declared before execution; no independent human labels",
+  "cases": 10,
+  "matched": 4,
+  "falsePositiveSuspicions": 0,
+  "misses": 0,
+  "inconclusive": 6,
+  "errors": 0,
+  "results": [
+    {
+      "id": "apple-home-learn-baseline",
+      "url": "https://www.apple.com/",
+      "finalURL": "https://www.apple.com/",
+      "httpStatus": 200,
+      "loadTimedOut": false,
+      "stylesheetStatus": {
+        "total": 10,
+        "unavailable": 0
+      },
+      "variant": "baseline",
+      "type": "action_discoverability",
+      "selectors": {
+        "subject": "main .homepage-section:first-of-type a.button[data-analytics-region=\"learn more\"]"
+      },
+      "selectorCounts": {
+        "subject": 0
+      },
+      "collection": {
+        "elements": 400,
+        "truncated": true
+      },
+      "mutation": null,
+      "mutationApplied": false,
+      "expected": "PASS",
+      "actual": "INCONCLUSIVE",
+      "matchesExpected": false,
+      "rationale": "The selected control should be available in the initial viewport; the control run changes only its local DOM presentation.",
+      "timestamp": "2026-10-11T14:29:43.490Z",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "explanation": "Required contract selectors did not resolve to unmasked evidence, or evidence exceeded the collection limit.",
+      "evidenceIds": [],
+      "signals": [],
+      "incomplete": true,
+      "aiCalls": 0,
+      "source": "deterministic",
+      "latencyMs": 4373,
+      "artifacts": ".ux-guard-pipeline/product-websites/runs/a976b740-2202-4774-a0a0-7686ae124a89-apple-home-learn-baseline-1280x800"
+    },
+    {
+      "id": "apple-home-learn-regression",
+      "url": "https://www.apple.com/",
+      "finalURL": "https://www.apple.com/",
+      "httpStatus": 200,
+      "loadTimedOut": false,
+      "stylesheetStatus": {
+        "total": 10,
+        "unavailable": 0
+      },
+      "variant": "regression",
+      "type": "action_discoverability",
+      "selectors": {
+        "subject": "main .homepage-section:first-of-type a.button[data-analytics-region=\"learn more\"]"
+      },
+      "selectorCounts": {
+        "subject": 0
+      },
+      "collection": {
+        "elements": 400,
+        "truncated": true
+      },
+      "mutation": "hide",
+      "mutationApplied": false,
+      "expected": "REVIEW",
+      "actual": "INCONCLUSIVE",
+      "matchesExpected": false,
+      "rationale": "The selected control should be available in the initial viewport; the control run changes only its local DOM presentation.",
+      "timestamp": "2026-10-11T14:29:47.956Z",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "explanation": "Required contract selectors did not resolve to unmasked evidence, or evidence exceeded the collection limit.",
+      "evidenceIds": [],
+      "signals": [],
+      "incomplete": true,
+      "aiCalls": 0,
+      "source": "deterministic",
+      "latencyMs": 3711,
+      "artifacts": ".ux-guard-pipeline/product-websites/runs/b81db6d5-7024-458f-bd10-b7549577248a-apple-home-learn-regression-1280x800"
+    },
+    {
+      "id": "apple-home-heading-baseline",
+      "url": "https://www.apple.com/",
+      "finalURL": "https://www.apple.com/",
+      "httpStatus": 200,
+      "loadTimedOut": false,
+      "stylesheetStatus": {
+        "total": 10,
+        "unavailable": 0
+      },
+      "variant": "baseline",
+      "type": "hierarchy",
+      "selectors": {
+        "subject": "main .homepage-section:first-of-type .tile-headline",
+        "relativeTo": "main .homepage-section:first-of-type .tile-subhead"
+      },
+      "selectorCounts": {
+        "subject": 0,
+        "relativeTo": 0
+      },
+      "collection": {
+        "elements": 400,
+        "truncated": true
+      },
+      "mutation": null,
+      "mutationApplied": false,
+      "expected": "PASS",
+      "actual": "INCONCLUSIVE",
+      "matchesExpected": false,
+      "rationale": "The product headline should dominate its secondary copy.",
+      "timestamp": "2026-10-11T14:29:51.743Z",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "explanation": "Required contract selectors did not resolve to unmasked evidence, or evidence exceeded the collection limit.",
+      "evidenceIds": [],
+      "signals": [],
+      "incomplete": true,
+      "aiCalls": 0,
+      "source": "deterministic",
+      "latencyMs": 3576,
+      "artifacts": ".ux-guard-pipeline/product-websites/runs/30411b7b-0667-4a01-9dee-5084b232a6f9-apple-home-heading-baseline-1280x800"
+    },
+    {
+      "id": "apple-home-heading-regression",
+      "url": "https://www.apple.com/",
+      "finalURL": "https://www.apple.com/",
+      "httpStatus": 200,
+      "loadTimedOut": false,
+      "stylesheetStatus": {
+        "total": 10,
+        "unavailable": 0
+      },
+      "variant": "regression",
+      "type": "hierarchy",
+      "selectors": {
+        "subject": "main .homepage-section:first-of-type .tile-headline",
+        "relativeTo": "main .homepage-section:first-of-type .tile-subhead"
+      },
+      "selectorCounts": {
+        "subject": 0,
+        "relativeTo": 0
+      },
+      "collection": {
+        "elements": 400,
+        "truncated": true
+      },
+      "mutation": "promote-context",
+      "mutationApplied": false,
+      "expected": "REVIEW",
+      "actual": "INCONCLUSIVE",
+      "matchesExpected": false,
+      "rationale": "The product headline should dominate its secondary copy.",
+      "timestamp": "2026-10-11T14:29:55.392Z",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "explanation": "Required contract selectors did not resolve to unmasked evidence, or evidence exceeded the collection limit.",
+      "evidenceIds": [],
+      "signals": [],
+      "incomplete": true,
+      "aiCalls": 0,
+      "source": "deterministic",
+      "latencyMs": 3676,
+      "artifacts": ".ux-guard-pipeline/product-websites/runs/275efc47-1a34-4769-a6e8-03ccc9be16d5-apple-home-heading-regression-1280x800"
+    },
+    {
+      "id": "apple-mac-navigation-baseline",
+      "url": "https://www.apple.com/mac/",
+      "finalURL": "https://www.apple.com/mac/",
+      "httpStatus": 200,
+      "loadTimedOut": false,
+      "stylesheetStatus": {
+        "total": 32,
+        "unavailable": 0
+      },
+      "variant": "baseline",
+      "type": "action_discoverability",
+      "selectors": {
+        "subject": "#globalnav-menubutton-link-search"
+      },
+      "selectorCounts": {
+        "subject": 1
+      },
+      "collection": {
+        "elements": 400,
+        "truncated": true
+      },
+      "mutation": null,
+      "mutationApplied": false,
+      "expected": "PASS",
+      "actual": "INCONCLUSIVE",
+      "matchesExpected": false,
+      "rationale": "The selected control should be available in the initial viewport; the control run changes only its local DOM presentation.",
+      "timestamp": "2026-10-11T14:29:59.141Z",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "explanation": "Required contract selectors did not resolve to unmasked evidence, or evidence exceeded the collection limit.",
+      "evidenceIds": [],
+      "signals": [],
+      "incomplete": true,
+      "aiCalls": 0,
+      "source": "deterministic",
+      "latencyMs": 4910,
+      "artifacts": ".ux-guard-pipeline/product-websites/runs/22d61d42-f6d9-4f69-9ce2-3a8b2c355200-apple-mac-navigation-baseline-1280x800"
+    },
+    {
+      "id": "apple-mac-navigation-regression",
+      "url": "https://www.apple.com/mac/",
+      "finalURL": "https://www.apple.com/mac/",
+      "httpStatus": 200,
+      "loadTimedOut": false,
+      "stylesheetStatus": {
+        "total": 32,
+        "unavailable": 0
+      },
+      "variant": "regression",
+      "type": "action_discoverability",
+      "selectors": {
+        "subject": "#globalnav-menubutton-link-search"
+      },
+      "selectorCounts": {
+        "subject": 1
+      },
+      "collection": {
+        "elements": 400,
+        "truncated": true
+      },
+      "mutation": "offscreen",
+      "mutationApplied": true,
+      "expected": "REVIEW",
+      "actual": "INCONCLUSIVE",
+      "matchesExpected": false,
+      "rationale": "The selected control should be available in the initial viewport; the control run changes only its local DOM presentation.",
+      "timestamp": "2026-10-11T14:30:04.156Z",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "explanation": "Required contract selectors did not resolve to unmasked evidence, or evidence exceeded the collection limit.",
+      "evidenceIds": ["e277", "e290", "e301"],
+      "signals": [
+        {
+          "intentId": "apple-mac-navigation-regression-intent",
+          "type": "action_discoverability",
+          "severity": "HIGH",
+          "explanation": "Declared action is outside the viewport, obscured, disabled or not interactive.",
+          "evidenceIds": ["e277", "e290", "e301"],
+          "facts": {
+            "rank": 0,
+            "available": false
+          },
+          "definitive": true
+        }
+      ],
+      "incomplete": true,
+      "aiCalls": 0,
+      "source": "deterministic",
+      "latencyMs": 5198,
+      "artifacts": ".ux-guard-pipeline/product-websites/runs/6430f99a-5c5c-40fd-b4f6-6c674b075c04-apple-mac-navigation-regression-1280x800"
+    },
+    {
+      "id": "clickup-home-start-baseline",
+      "url": "https://clickup.com/",
+      "finalURL": "https://clickup.com/",
+      "httpStatus": 200,
+      "loadTimedOut": false,
+      "stylesheetStatus": {
+        "total": 9,
+        "unavailable": 0
+      },
+      "variant": "baseline",
+      "type": "action_discoverability",
+      "selectors": {
+        "subject": "main button[class*=HomeHeroLongTitle_ctaButton]"
+      },
+      "selectorCounts": {
+        "subject": 1
+      },
+      "collection": {
+        "elements": 273,
+        "truncated": false
+      },
+      "mutation": null,
+      "mutationApplied": false,
+      "expected": "PASS",
+      "actual": "PASS",
+      "matchesExpected": true,
+      "rationale": "The selected control should be available in the initial viewport; the control run changes only its local DOM presentation.",
+      "timestamp": "2026-10-11T14:30:10.133Z",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "explanation": "No relevant deterministic suspicion found; AI was not invoked.",
+      "evidenceIds": [],
+      "signals": [],
+      "incomplete": false,
+      "aiCalls": 0,
+      "source": "deterministic",
+      "latencyMs": 14413,
+      "artifacts": ".ux-guard-pipeline/product-websites/runs/183c3c74-bb68-4fe9-8c6c-051893b996dd-clickup-home-start-baseline-1280x800"
+    },
+    {
+      "id": "clickup-home-start-regression",
+      "url": "https://clickup.com/",
+      "finalURL": "https://clickup.com/",
+      "httpStatus": 200,
+      "loadTimedOut": false,
+      "stylesheetStatus": {
+        "total": 9,
+        "unavailable": 0
+      },
+      "variant": "regression",
+      "type": "action_discoverability",
+      "selectors": {
+        "subject": "main button[class*=HomeHeroLongTitle_ctaButton]"
+      },
+      "selectorCounts": {
+        "subject": 1
+      },
+      "collection": {
+        "elements": 273,
+        "truncated": false
+      },
+      "mutation": "disable",
+      "mutationApplied": true,
+      "expected": "REVIEW",
+      "actual": "REVIEW",
+      "matchesExpected": true,
+      "rationale": "The selected control should be available in the initial viewport; the control run changes only its local DOM presentation.",
+      "timestamp": "2026-10-11T14:30:24.727Z",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "explanation": "Deterministic conflict: Declared action is outside the viewport, obscured, disabled or not interactive.",
+      "evidenceIds": ["e48", "e46", "e51"],
+      "signals": [
+        {
+          "intentId": "clickup-home-start-regression-intent",
+          "type": "action_discoverability",
+          "severity": "HIGH",
+          "explanation": "Declared action is outside the viewport, obscured, disabled or not interactive.",
+          "evidenceIds": ["e48", "e46", "e51"],
+          "facts": {
+            "rank": 0,
+            "available": false
+          },
+          "definitive": true
+        }
+      ],
+      "incomplete": false,
+      "aiCalls": 0,
+      "source": "deterministic",
+      "latencyMs": 9075,
+      "artifacts": ".ux-guard-pipeline/product-websites/runs/9c9b05e6-03b5-497d-b594-445933e10326-clickup-home-start-regression-1280x800"
+    },
+    {
+      "id": "notion-home-start-baseline",
+      "url": "https://www.notion.com/",
+      "finalURL": "https://www.notion.com/",
+      "httpStatus": 200,
+      "loadTimedOut": false,
+      "stylesheetStatus": {
+        "total": 18,
+        "unavailable": 0
+      },
+      "variant": "baseline",
+      "type": "action_discoverability",
+      "selectors": {
+        "subject": "main a[class*=HeroCTA][href^=\"/signup\"]"
+      },
+      "selectorCounts": {
+        "subject": 1
+      },
+      "collection": {
+        "elements": 122,
+        "truncated": false
+      },
+      "mutation": null,
+      "mutationApplied": false,
+      "expected": "PASS",
+      "actual": "PASS",
+      "matchesExpected": true,
+      "rationale": "The selected control should be available in the initial viewport; the control run changes only its local DOM presentation.",
+      "timestamp": "2026-10-11T14:30:34.635Z",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "explanation": "No relevant deterministic suspicion found; AI was not invoked.",
+      "evidenceIds": [],
+      "signals": [],
+      "incomplete": false,
+      "aiCalls": 0,
+      "source": "deterministic",
+      "latencyMs": 3503,
+      "artifacts": ".ux-guard-pipeline/product-websites/runs/61abd54a-f8b2-49f2-818e-a9af4ab667c4-notion-home-start-baseline-1280x800"
+    },
+    {
+      "id": "notion-home-start-regression",
+      "url": "https://www.notion.com/",
+      "finalURL": "https://www.notion.com/",
+      "httpStatus": 200,
+      "loadTimedOut": false,
+      "stylesheetStatus": {
+        "total": 18,
+        "unavailable": 0
+      },
+      "variant": "regression",
+      "type": "action_discoverability",
+      "selectors": {
+        "subject": "main a[class*=HeroCTA][href^=\"/signup\"]"
+      },
+      "selectorCounts": {
+        "subject": 1
+      },
+      "collection": {
+        "elements": 122,
+        "truncated": false
+      },
+      "mutation": "hide",
+      "mutationApplied": true,
+      "expected": "REVIEW",
+      "actual": "REVIEW",
+      "matchesExpected": true,
+      "rationale": "The selected control should be available in the initial viewport; the control run changes only its local DOM presentation.",
+      "timestamp": "2026-10-11T14:30:38.193Z",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "explanation": "Deterministic conflict: primary_action is present but hidden.",
+      "evidenceIds": ["e33", "e31"],
+      "signals": [
+        {
+          "intentId": "notion-home-start-regression-intent",
+          "type": "visibility",
+          "severity": "HIGH",
+          "explanation": "primary_action is present but hidden.",
+          "evidenceIds": ["e33", "e31"],
+          "facts": {
+            "visible": false
+          },
+          "definitive": true
+        }
+      ],
+      "incomplete": false,
+      "aiCalls": 0,
+      "source": "deterministic",
+      "latencyMs": 2978,
+      "artifacts": ".ux-guard-pipeline/product-websites/runs/40a88e28-ddd4-4385-997f-ac93b75cf837-notion-home-start-regression-1280x800"
+    }
+  ]
+}

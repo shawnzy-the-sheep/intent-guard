@@ -1,0 +1,19 @@
+version: 1
+id: notion-home-start-regression
+page:
+  route: /
+user:
+  role: signed-out public visitor
+goal:
+  primary: Find the main Get Notion free action on Notion
+entities: {}
+actions:
+  primary_action:
+    priority: primary
+    selectors:
+      - main a[class*=HeroCTA][href^="/signup"]
+intents:
+  - id: notion-home-start-regression-intent
+    type: action_discoverability
+    subject: primary_action
+    expectation: discoverable

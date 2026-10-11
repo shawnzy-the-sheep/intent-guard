@@ -1,0 +1,62 @@
+{
+  "capturedDate": "2026-10-11",
+  "mode": "read-only existing-browser DOM capture and deterministic rules",
+  "viewport": {
+    "width": 2056,
+    "height": 1060
+  },
+  "aiCalls": 0,
+  "axeRun": false,
+  "screenshotMasking": false,
+  "privateArtifactsCommitted": false,
+  "results": [
+    {
+      "id": "clickup-list-search",
+      "pageType": "List",
+      "expected": "PASS",
+      "actual": "PASS",
+      "elements": 214,
+      "truncated": false
+    },
+    {
+      "id": "clickup-board-search",
+      "pageType": "Board",
+      "expected": "PASS",
+      "actual": "PASS",
+      "elements": 168,
+      "truncated": false
+    },
+    {
+      "id": "clickup-calendar-search",
+      "pageType": "Calendar",
+      "expected": "PASS",
+      "actual": "PASS",
+      "elements": 114,
+      "truncated": false
+    },
+    {
+      "id": "notion-vault-search",
+      "pageType": "Knowledge dashboard",
+      "expected": "PASS",
+      "actual": "PASS",
+      "elements": 270,
+      "truncated": false
+    },
+    {
+      "id": "notion-books-search",
+      "pageType": "Books database",
+      "expected": "PASS",
+      "actual": "PASS",
+      "elements": 163,
+      "truncated": false
+    },
+    {
+      "id": "notion-progress-search",
+      "pageType": "Progress database",
+      "expected": "PASS",
+      "actual": "PASS",
+      "elements": 161,
+      "truncated": false
+    }
+  ]
+}

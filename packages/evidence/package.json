@@ -1,5 +1,5 @@
 {
-  "name": "@intentguard/evidence",
+  "name": "@ux-guard-pipeline/evidence",
   "version": "0.1.0",
   "private": true,
   "type": "module",

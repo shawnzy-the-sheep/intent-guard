@@ -69,16 +69,16 @@ importers:
 
   packages/cli:
     dependencies:
-      '@intentguard/contracts':
+      '@ux-guard-pipeline/contracts':
         specifier: workspace:*
         version: link:../contracts
-      '@intentguard/core':
+      '@ux-guard-pipeline/core':
         specifier: workspace:*
         version: link:../core
-      '@intentguard/playwright':
+      '@ux-guard-pipeline/playwright':
         specifier: workspace:*
         version: link:../playwright
-      '@intentguard/reporter':
+      '@ux-guard-pipeline/reporter':
         specifier: workspace:*
         version: link:../reporter
       commander:
@@ -90,7 +90,7 @@ importers:
 
   packages/contracts:
     dependencies:
-      '@intentguard/shared':
+      '@ux-guard-pipeline/shared':
         specifier: workspace:*
         version: link:../shared
       yaml:
@@ -102,25 +102,25 @@ importers:
 
   packages/core:
     dependencies:
-      '@intentguard/contracts':
+      '@ux-guard-pipeline/contracts':
         specifier: workspace:*
         version: link:../contracts
-      '@intentguard/evaluator':
+      '@ux-guard-pipeline/evaluator':
         specifier: workspace:*
         version: link:../evaluator
-      '@intentguard/evidence':
+      '@ux-guard-pipeline/evidence':
         specifier: workspace:*
         version: link:../evidence
-      '@intentguard/playwright':
+      '@ux-guard-pipeline/playwright':
         specifier: workspace:*
         version: link:../playwright
-      '@intentguard/reporter':
+      '@ux-guard-pipeline/reporter':
         specifier: workspace:*
         version: link:../reporter
-      '@intentguard/rules':
+      '@ux-guard-pipeline/rules':
         specifier: workspace:*
         version: link:../rules
-      '@intentguard/shared':
+      '@ux-guard-pipeline/shared':
         specifier: workspace:*
         version: link:../shared
       jiti:
@@ -135,10 +135,10 @@ importers:
 
   packages/evaluator:
     dependencies:
-      '@intentguard/contracts':
+      '@ux-guard-pipeline/contracts':
         specifier: workspace:*
         version: link:../contracts
-      '@intentguard/evidence':
+      '@ux-guard-pipeline/evidence':
         specifier: workspace:*
         version: link:../evidence
       zod:
@@ -152,13 +152,13 @@ importers:
       '@axe-core/playwright':
         specifier: ^4.10.0
         version: 4.13.0(playwright-core@1.64.0)
-      '@intentguard/contracts':
+      '@ux-guard-pipeline/contracts':
         specifier: workspace:*
         version: link:../contracts
-      '@intentguard/evidence':
+      '@ux-guard-pipeline/evidence':
         specifier: workspace:*
         version: link:../evidence
-      '@intentguard/shared':
+      '@ux-guard-pipeline/shared':
         specifier: workspace:*
         version: link:../shared
       playwright:
@@ -167,13 +167,13 @@ importers:
 
   packages/reporter:
     dependencies:
-      '@intentguard/evaluator':
+      '@ux-guard-pipeline/evaluator':
         specifier: workspace:*
         version: link:../evaluator
-      '@intentguard/evidence':
+      '@ux-guard-pipeline/evidence':
         specifier: workspace:*
         version: link:../evidence
-      '@intentguard/shared':
+      '@ux-guard-pipeline/shared':
         specifier: workspace:*
         version: link:../shared
       sharp:
@@ -182,10 +182,10 @@ importers:
 
   packages/rules:
     dependencies:
-      '@intentguard/contracts':
+      '@ux-guard-pipeline/contracts':
         specifier: workspace:*
         version: link:../contracts
-      '@intentguard/evidence':
+      '@ux-guard-pipeline/evidence':
         specifier: workspace:*
         version: link:../evidence
 

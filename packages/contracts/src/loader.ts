@@ -1,6 +1,6 @@
 import { readFile } from 'node:fs/promises';
 import { parseDocument } from 'yaml';
-import { IntentGuardError } from '@intentguard/shared';
+import { UxGuardPipelineError } from '@ux-guard-pipeline/shared';
 import { UXContractSchema, type UXContract } from './schema.js';
 export async function loadContract(path: string): Promise<UXContract> {
   try {
@@ -18,7 +18,7 @@ export async function loadContract(path: string): Promise<UXContract> {
       );
     return result.data;
   } catch (error) {
-    throw new IntentGuardError(
+    throw new UxGuardPipelineError(
       'CONTRACT_ERROR',
       `${path}: ${error instanceof Error ? error.message : 'Invalid contract'}`,
     );

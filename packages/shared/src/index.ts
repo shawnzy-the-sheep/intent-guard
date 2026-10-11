@@ -3,19 +3,19 @@ export type Severity = 'LOW' | 'MEDIUM' | 'HIGH';
 export type ErrorKind =
   'CONTRACT_ERROR' | 'EXECUTION_ERROR' | 'EVIDENCE_ERROR' | 'MODEL_ERROR';
 
-export class IntentGuardError extends Error {
+export class UxGuardPipelineError extends Error {
   constructor(
     public readonly kind: ErrorKind,
     message: string,
   ) {
     super(message);
-    this.name = 'IntentGuardError';
+    this.name = 'UxGuardPipelineError';
   }
 }
 
 export function safeId(value: string): string {
   if (!/^[a-zA-Z0-9][a-zA-Z0-9_-]{0,99}$/.test(value)) {
-    throw new IntentGuardError(
+    throw new UxGuardPipelineError(
       'CONTRACT_ERROR',
       'IDs must be 1-100 letters, digits, underscores or hyphens.',
     );

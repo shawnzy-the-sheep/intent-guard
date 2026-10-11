@@ -1,10 +1,12 @@
-# IntentGuard
+# ux-guard-pipeline
 
-**CI for UX intent.** Your interface can work correctly and still communicate the wrong hierarchy, ownership, or next action.
+A CLI for checking UI hierarchy, status ownership, and primary actions with Playwright and an optional AI review step.
 
-IntentGuard turns explicit UX Contracts into evidence-backed review signals. Playwright captures selected elements and masked screenshots; deterministic rules filter suspicious states; an optional structured model evaluator interprets ambiguous evidence. AI findings remain non-blocking.
+The included demo is a task details page. One layout puts the current task first. Another gives the parent job's status a large banner above it. The data and buttons are the same, but the page draws attention to a different object.
 
-## Run the demo
+A YAML contract describes which entity and action should take priority. The pipeline captures the page, measures relevant elements, and checks those expectations. If the rules find a possible issue, an AI provider can review the screenshot and collected evidence. Reports include element IDs and annotated screenshots so you can inspect the finding.
+
+## Setup
 
 Requires Node.js 24+ and pnpm 11.25.0.
 
@@ -15,26 +17,39 @@ pnpm build
 pnpm demo:start
 ```
 
-In another terminal:
+Open [the demo](http://127.0.0.1:5173/demo/good). It has four layouts: good, hierarchy regression, ownership ambiguity, and action regression.
+
+Run these commands in another terminal:
 
 ```sh
-pnpm intentguard test task-details
-# PASS; no AI calls
-pnpm intentguard test task-details --route /demo/hierarchy --provider mock --debug
-# REVIEW; explicitly labelled offline mock
-pnpm intentguard test task-details --route /demo/ownership --provider mock
-pnpm intentguard test task-details --route /demo/action --deterministic-only
+pnpm ux-guard-pipeline test task-details
+pnpm ux-guard-pipeline test task-details --route /demo/hierarchy --provider mock
+pnpm ux-guard-pipeline test task-details --route /demo/ownership --provider mock
+pnpm ux-guard-pipeline test task-details --route /demo/action --deterministic-only
 ```
 
-Open [the good demo](http://127.0.0.1:5173/demo/good), [hierarchy regression](http://127.0.0.1:5173/demo/hierarchy), [ownership ambiguity](http://127.0.0.1:5173/demo/ownership), or [action regression](http://127.0.0.1:5173/demo/action). The task data and functional actions are identical across these four pages.
+The good layout returns PASS. The other layouts return REVIEW with these options. The mock provider uses the rule results to exercise the pipeline; it does not make an independent AI judgment.
 
-If browser downloads are unavailable and Chrome is already installed, prefix commands with `INTENTGUARD_BROWSER_CHANNEL=chrome`. This starts an isolated headless context; it does not access a personal browser profile.
+If Chromium cannot be downloaded, use an installed Chrome browser:
 
-## Evaluate your application
+```sh
+UX_GUARD_PIPELINE_BROWSER_CHANNEL=chrome pnpm ux-guard-pipeline test task-details
+```
 
-Run `pnpm intentguard init` in a new directory to create a starter config and contract. The command refuses to overwrite files. In this workspace, edit `intentguard.config.ts` and `intent/task-details.yaml` directly. Contracts use YAML and reference entities/actions by selectors:
+## Check your own application
+
+Edit `ux-guard-pipeline.config.ts` to set your application's URL and contract paths. Update `intent/task-details.yaml` with selectors for your page.
+
+Each contract declares entities, actions, and expectations. For example:
 
 ```yaml
+entities:
+  current_task:
+    priority: primary
+    selectors: ["[data-entity='task']"]
+  parent_job:
+    priority: contextual
+    selectors: ["[data-entity='parent-job']"]
 intents:
   - id: task-primary-focus
     type: hierarchy
@@ -43,51 +58,57 @@ intents:
     expectation: dominant
 ```
 
-Declare meaning, rather than exact colors or pixels. Supported v1 intents are `hierarchy` (`dominant` / `subordinate`), `semantic_ownership` (`contextual`), and `action_discoverability` (`immediate` / `discoverable`). Contract subjects and hierarchy references must exist; IDs must be unique. The schema rejects unknown fields and versions.
+This is part of a contract; see [the sample](intent/task-details.yaml) for the complete format. The three supported checks are:
 
-Configuration supports contract globs, base URL, output directory, multiple viewport sizes, a ready selector, redaction selectors, provider/model, timeouts, hierarchy threshold, and caching. A run waits for `readySelector` when configured; use it to identify an application state that is ready for inspection. Routes must remain on the configured origin. Configuration files are trusted executable local code.
+- **Hierarchy:** compare the prominence of two declared entities.
+- **Ownership:** check whether contextual status text could be associated with the primary entity.
+- **Action discoverability:** check whether the declared action is visible, available, and prominent among content actions.
+
+For a new project, the built CLI's `init` command creates a starter config and contract. It refuses to overwrite existing files.
 
 ```sh
-pnpm intentguard test                      # all configured contracts/viewports
-pnpm intentguard test task-details --json  # machine-readable result array
-pnpm intentguard test --deterministic-only # no provider calls
-pnpm intentguard test --debug --no-cache   # sanitised model inputs, fresh evaluation
+pnpm ux-guard-pipeline test                     # all contracts and viewports
+pnpm ux-guard-pipeline test task-details --json # JSON results
+pnpm ux-guard-pipeline test --deterministic-only
+pnpm ux-guard-pipeline test --debug --no-cache
 ```
 
-Exit code `1` indicates technical/configuration failure. PASS, REVIEW and INCONCLUSIVE exit `0`; semantic findings do not block CI. Accessibility violations are reported separately and are not silently converted into semantic findings.
+## Results
 
-## Live model evaluation
+| Result       | Meaning                                                                  |
+| ------------ | ------------------------------------------------------------------------ |
+| PASS         | The checks found no relevant issue.                                      |
+| REVIEW       | The rules or model found a possible contract conflict.                   |
+| INCONCLUSIVE | Missing evidence or an unavailable/uncertain model prevented a decision. |
+| ERROR        | A configuration, browser, or other execution step failed.                |
 
-The default provider is `none`. Suspicious semantic evidence returns INCONCLUSIVE until you explicitly choose deterministic-only mode, a mock, or a live provider. The offline mock echoes heuristic signals to test the pipeline; it is not an independent UX judge.
+Only ERROR exits with code `1`. REVIEW and INCONCLUSIVE do not fail CI. Accessibility results come from axe-core and are reported separately.
+
+Reports are saved under `.ux-guard-pipeline/runs/`. Each run includes screenshots, collected evidence, rule results, Markdown and JSON reports, and stage logs. Model results are saved when a provider runs. `--debug` also saves the model inputs after redaction.
+
+## OpenAI review
+
+The default provider is `none`. Use `--provider openai` to enable live evaluation:
 
 ```sh
 export OPENAI_API_KEY='your-key'
-export INTENTGUARD_MODEL='your-supported-multimodal-model'
-pnpm intentguard test task-details --route /demo/hierarchy --provider openai --debug
+export UX_GUARD_PIPELINE_MODEL='your-supported-multimodal-model'
+pnpm ux-guard-pipeline test task-details --route /demo/hierarchy --provider openai
 ```
 
-The OpenAI adapter uses the [Responses API and structured outputs](https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses), with `store: false`, a screenshot plus selected evidence for the visual stage, and contract/evidence/visual result for the intent judge. A model must support images and structured outputs. Outputs are validated against Zod schemas, the contract ID, and captured evidence IDs. Each stage retries once; malformed output, timeout, refusals or low confidence produce INCONCLUSIVE. Definitive action availability facts cannot be overridden by a model PASS.
+The model must support images and structured outputs. The adapter uses the [Responses API](https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses) with `store: false`. It checks returned schemas, contract IDs, and evidence references. Failed or invalid responses get one retry, then return INCONCLUSIVE. Low-confidence responses also return INCONCLUSIVE.
 
-No live model requests were required for the local test suite. Live-model precision and independent human agreement must be measured before trusting semantic review in production.
+The test suite uses mocked responses. Live-model accuracy has not been measured.
 
-## Artifacts and privacy
+## Private data
 
-Each run writes `.intentguard/runs/<run-id>-<contract>-<viewport>/`:
+The collector masks `[data-sensitive]`, password and hidden inputs, and `.customer-email` before capture. Add selectors for other private content through the config's `redact` option. Common email addresses and credential patterns are also scrubbed.
 
-- `screenshot.png`, `annotated.png`: masked screenshot and evidence boxes.
-- `page-evidence.json`, `deterministic.json`: selected DOM geometry, styles, containment, action ranks, axe summary.
-- `visual-result.json`, `intent-result.json`: when an evaluator runs.
-- `model-input.json`: sanitised input projection in debug mode, without credentials or image base64.
-- `report.json`, `report.md`, `events.jsonl`: result, human-readable evidence, structured stage logs.
+Cookies, storage, input values, request headers, and the full DOM are not collected for the model. Images, canvas content, and application-specific private data need explicit masks. Check the saved screenshots and debug inputs before using a live provider with private pages.
 
-The CLI also writes `summary.json` and `summary.md`, and appends a GitHub Actions job summary when available. Evaluations cache by contract, normalised evidence, screenshot hash, provider/model, and prompt version. Invalid or inconclusive output is never cached as a PASS.
-
-Always add selectors for application-specific private content. `[data-sensitive]`, password/hidden inputs and `.customer-email` are masked before capture; matching descendants are excluded from evidence. Obvious email addresses and credential-like text are scrubbed. Cookies, storage, input values, headers and full DOM are never collected for the evaluator. Automatic scrubbing cannot identify every kind of private content, images or canvas content: use explicit redaction selectors and audit debug artifacts before enabling a live provider. Browser traces are deliberately omitted because Playwright network/snapshot traces can preserve credentials; `events.jsonl` supplies safe stage diagnostics.
-
-## Verification
+## Tests and benchmark
 
 ```sh
-pnpm build
 pnpm typecheck
 pnpm lint
 pnpm format:check
@@ -97,14 +118,12 @@ pnpm test:e2e
 pnpm bench
 ```
 
-Integration tests exercise real browser extraction and redaction. E2E runs the React demo through the built CLI, checks all four expected outcomes, cache reuse, artifacts, technical error exits and identical Continue Task behavior. Normal CI never calls a live model.
+The browser tests cover collection, redaction, reports, caching, CLI results, and the demo's buttons. Use `UX_GUARD_PIPELINE_BROWSER_CHANNEL=chrome` for these commands if you use installed Chrome instead of bundled Chromium.
 
-UXBench contains 20 paired synthetic cases across hierarchy, ambiguity and action discoverability (40 rendered states). `pnpm bench` defaults to mock and writes `.intentguard/benchmark/summary.json`; choose `INTENTGUARD_BENCH_PROVIDER=openai` and credentials to run an actual model benchmark. Results include precision, recall, F1, false positive rate, coverage, AI calls and latency. Undecided cases remain visible. Cost and human agreement stay null until measured; synthetic mock scores do not establish real-world AI accuracy.
+UXBench contains 20 synthetic good/bad pairs. `pnpm bench` runs all 40 states with the mock provider and saves metrics to `.ux-guard-pipeline/benchmark/summary.json`. Set `UX_GUARD_PIPELINE_BENCH_PROVIDER=openai` to evaluate them with a live model. The expected labels were written with the fixtures; they have not had independent human review. Mock benchmark results check pipeline behavior, not AI accuracy.
 
-## Implementation boundary
+## Current scope
 
-This implements the project plan's v0.1 CLI scope, with caching, viewport support, synthetic UXBench and GitHub Actions as reliability scaffolding. See [implementation status](docs/implementation-status.md), [architecture](docs/architecture/pipeline.md), [contract reference](docs/contracts/v1.md), [decisions](docs/decisions/README.md), and [evaluation methodology](docs/evaluation/README.md).
+Version 0.1 includes the three checks, CLI, demo, reports, caching, multiple viewport support, and a GitHub Actions workflow. Diff-based execution, interaction-cost checks, comparisons across UI states, authenticated role fixtures, and a GitHub App are still pending.
 
-The [local verification record](docs/verification.md) documents the executed checks and remaining validation limits.
-
-Later roadmap items remain explicit future work: Git diff mapping, interaction-cost baselines, cross-state comparison, role-specific fixtures, independent human labels, GitHub App, SaaS/auth/billing, persistent analytics, and additional model adapters. The plan explicitly excludes SaaS infrastructure from the first implementation slice.
+More detail: [architecture](docs/architecture/pipeline.md), [contract format](docs/contracts/v1.md), [implementation status](docs/implementation-status.md), [evaluation notes](docs/evaluation/README.md), and [local verification](docs/verification.md).

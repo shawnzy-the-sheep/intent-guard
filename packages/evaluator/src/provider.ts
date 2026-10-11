@@ -1,10 +1,10 @@
 import { readFile } from 'node:fs/promises';
 import { z } from 'zod';
-import type { UXContract } from '@intentguard/contracts';
+import type { UXContract } from '@ux-guard-pipeline/contracts';
 import type {
   PageEvidence,
   DeterministicEvidence,
-} from '@intentguard/evidence';
+} from '@ux-guard-pipeline/evidence';
 import {
   VisualEvaluationSchema,
   IntentEvaluationSchema,

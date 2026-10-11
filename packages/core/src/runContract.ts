@@ -2,10 +2,16 @@ import { randomUUID, createHash } from 'node:crypto';
 import { mkdir, writeFile, readFile } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
 import { type Browser } from 'playwright';
-import type { UXContract } from '@intentguard/contracts';
-import { normalizeEvidence, type PageEvidence } from '@intentguard/evidence';
-import { collectPageEvidence, launchBrowser } from '@intentguard/playwright';
-import { evaluateRules } from '@intentguard/rules';
+import type { UXContract } from '@ux-guard-pipeline/contracts';
+import {
+  normalizeEvidence,
+  type PageEvidence,
+} from '@ux-guard-pipeline/evidence';
+import {
+  collectPageEvidence,
+  launchBrowser,
+} from '@ux-guard-pipeline/playwright';
+import { evaluateRules } from '@ux-guard-pipeline/rules';
 import {
   OpenAIProvider,
   MockProvider,
@@ -18,10 +24,10 @@ import {
   VisualEvaluationSchema,
   type ModelProvider,
   type EvaluationOutcome,
-} from '@intentguard/evaluator';
-import { IntentGuardError, publicUrl } from '@intentguard/shared';
-import { writeReport, type RunReport } from '@intentguard/reporter';
-import type { IntentGuardConfig } from './config.js';
+} from '@ux-guard-pipeline/evaluator';
+import { UxGuardPipelineError, publicUrl } from '@ux-guard-pipeline/shared';
+import { writeReport, type RunReport } from '@ux-guard-pipeline/reporter';
+import type { UxGuardPipelineConfig } from './config.js';
 export interface RunOptions {
   deterministicOnly?: boolean;
   debug?: boolean;
@@ -31,7 +37,7 @@ export interface RunOptions {
 }
 export async function runContract(
   contract: UXContract,
-  config: IntentGuardConfig,
+  config: UxGuardPipelineConfig,
   viewport = config.viewports[0]!,
   options: RunOptions = {},
 ): Promise<RunReport> {
@@ -86,7 +92,7 @@ export async function runContract(
     page.setDefaultTimeout(config.timeoutMs);
     const url = new URL(contract.page.route, config.baseURL);
     if (url.origin !== new URL(config.baseURL).origin)
-      throw new IntentGuardError(
+      throw new UxGuardPipelineError(
         'CONTRACT_ERROR',
         'Contract navigation must stay on configured origin.',
       );
@@ -96,12 +102,12 @@ export async function runContract(
       timeout: config.timeoutMs,
     });
     if (!response || !response.ok())
-      throw new IntentGuardError(
+      throw new UxGuardPipelineError(
         'EXECUTION_ERROR',
         `Page returned HTTP ${response?.status() ?? 'unavailable'}`,
       );
     if (new URL(page.url()).origin !== url.origin)
-      throw new IntentGuardError(
+      throw new UxGuardPipelineError(
         'EXECUTION_ERROR',
         'Unexpected cross-origin redirect.',
       );
@@ -303,7 +309,7 @@ export async function runContract(
   } catch (error) {
     report.result = 'ERROR';
     report.errorKind =
-      error instanceof IntentGuardError
+      error instanceof UxGuardPipelineError
         ? error.kind
         : stage === 'evidence'
           ? 'EVIDENCE_ERROR'
@@ -311,7 +317,7 @@ export async function runContract(
             ? 'MODEL_ERROR'
             : 'EXECUTION_ERROR';
     // Browser/API exception strings can include URLs or page content. Persist only classified errors.
-    report.explanation = `${report.errorKind}: ${error instanceof IntentGuardError ? error.message : `Failure during ${stage}. Check browser installation, selectors, configuration and page availability.`}`;
+    report.explanation = `${report.errorKind}: ${error instanceof UxGuardPipelineError ? error.message : `Failure during ${stage}. Check browser installation, selectors, configuration and page availability.`}`;
   } finally {
     await context?.close();
     if (!options.browser) await browser?.close();

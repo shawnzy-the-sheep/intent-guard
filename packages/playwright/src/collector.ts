@@ -1,8 +1,12 @@
 import type { Page } from 'playwright';
 import { AxeBuilder } from '@axe-core/playwright';
-import { cleanText, publicUrl, IntentGuardError } from '@intentguard/shared';
-import type { UXContract } from '@intentguard/contracts';
-import type { PageEvidence } from '@intentguard/evidence';
+import {
+  cleanText,
+  publicUrl,
+  UxGuardPipelineError,
+} from '@ux-guard-pipeline/shared';
+import type { UXContract } from '@ux-guard-pipeline/contracts';
+import type { PageEvidence } from '@ux-guard-pipeline/evidence';
 
 export const DEFAULT_REDACT = [
   '[data-sensitive]',
@@ -22,7 +26,7 @@ export async function collectPageEvidence(
   await page.evaluate((selectors) => {
     for (const selector of selectors) {
       for (const el of document.querySelectorAll(selector)) {
-        el.setAttribute('data-intentguard-masked', 'true');
+        el.setAttribute('data-ux-guard-pipeline-masked', 'true');
         (el as HTMLElement).style.setProperty(
           'visibility',
           'hidden',
@@ -32,7 +36,7 @@ export async function collectPageEvidence(
     }
     const style = document.createElement('style');
     style.textContent =
-      '[data-intentguard-masked], [data-intentguard-masked] * { visibility: hidden !important; } *, *::before, *::after { animation: none !important; transition: none !important; }';
+      '[data-ux-guard-pipeline-masked], [data-ux-guard-pipeline-masked] * { visibility: hidden !important; } *, *::before, *::after { animation: none !important; transition: none !important; }';
     document.head.append(style);
     const scrub = (value: string) =>
       value
@@ -43,7 +47,9 @@ export async function collectPageEvidence(
     let node: Node | null;
     while ((node = walk.nextNode())) {
       if (
-        !node.parentElement?.closest('script,style,[data-intentguard-masked]')
+        !node.parentElement?.closest(
+          'script,style,[data-ux-guard-pipeline-masked]',
+        )
       )
         node.textContent = scrub(node.textContent || '');
     }
@@ -83,7 +89,7 @@ export async function collectPageEvidence(
     );
     for (const els of matches.values()) for (const el of els) relevant.add(el);
     const unmasked = [...relevant].filter(
-      (el) => !el.closest('[data-intentguard-masked]'),
+      (el) => !el.closest('[data-ux-guard-pipeline-masked]'),
     );
     const selected = unmasked.slice(0, 400);
     const ids = new Map(selected.map((el, i) => [el, `e${i + 1}`]));
@@ -187,7 +193,7 @@ export async function collectPageEvidence(
     };
   }, contract);
   if (!raw.elements.length)
-    throw new IntentGuardError(
+    throw new UxGuardPipelineError(
       'EVIDENCE_ERROR',
       'No relevant unmasked elements were collected.',
     );

@@ -1,4 +1,4 @@
-name: IntentGuard
+name: ux-guard-pipeline
 on:
   push:
   pull_request:
@@ -24,18 +24,18 @@ jobs:
       - name: Demo UX review (non-blocking semantic findings)
         shell: bash
         run: |
-          pnpm demo:start > /tmp/intentguard-demo.log 2>&1 &
+          pnpm demo:start > /tmp/ux-guard-pipeline-demo.log 2>&1 &
           demo_pid=$!
           trap 'kill "$demo_pid" 2>/dev/null || true' EXIT
           for i in {1..100}; do
             if curl --fail --silent http://127.0.0.1:5173/demo/good > /dev/null; then break; fi
             sleep 0.2
           done
-          pnpm intentguard test task-details --provider mock --route /demo/hierarchy --debug
+          pnpm ux-guard-pipeline test task-details --provider mock --route /demo/hierarchy --debug
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: intentguard-evidence
-          path: .intentguard/
+          name: ux-guard-pipeline-evidence
+          path: .ux-guard-pipeline/
           include-hidden-files: true
           retention-days: 7

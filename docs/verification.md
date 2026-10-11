@@ -23,4 +23,4 @@ Verified with Node.js 24.11.0, pnpm 11.25.0 and Playwright 1.64.0. Browser tests
 
 The synthetic mock benchmark had 20 TP, 20 TN, zero FP/FN, zero undecided states, and 0.75 mock provider calls per state. This is pipeline validation, not a measurement of live AI accuracy. No independent human labels, real model calibration, billed cost measurements or remote CI execution are claimed.
 
-Reproduce browser tests with `INTENTGUARD_BROWSER_CHANNEL=chrome pnpm test:integration`, `INTENTGUARD_BROWSER_CHANNEL=chrome pnpm test:e2e`, and `INTENTGUARD_BROWSER_CHANNEL=chrome pnpm bench`; omit the environment variable when bundled Chromium is installed. The E2E server selects its own available local port and can run alongside the interactive demo.
+Reproduce browser tests with `UX_GUARD_PIPELINE_BROWSER_CHANNEL=chrome pnpm test:integration`, `UX_GUARD_PIPELINE_BROWSER_CHANNEL=chrome pnpm test:e2e`, and `UX_GUARD_PIPELINE_BROWSER_CHANNEL=chrome pnpm bench`; omit the environment variable when bundled Chromium is installed. The E2E server selects its own available local port and can run alongside the interactive demo.

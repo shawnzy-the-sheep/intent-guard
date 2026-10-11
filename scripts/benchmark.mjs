@@ -30,12 +30,12 @@ const server = createServer(async (req, res) => {
 });
 await new Promise((r) => server.listen(0, '127.0.0.1', r));
 const baseURL = `http://127.0.0.1:${server.address().port}`;
-const provider = process.env.INTENTGUARD_BENCH_PROVIDER || 'mock';
+const provider = process.env.UX_GUARD_PIPELINE_BENCH_PROVIDER || 'mock';
 const config = ConfigSchema.parse({
   baseURL,
-  outputDir: '.intentguard/benchmark',
+  outputDir: '.ux-guard-pipeline/benchmark',
   provider,
-  model: process.env.INTENTGUARD_MODEL,
+  model: process.env.UX_GUARD_PIPELINE_MODEL,
   cache: false,
 });
 let browser;
@@ -121,9 +121,9 @@ const summary = {
   humanModelAgreement: null,
   results,
 };
-await mkdir('.intentguard/benchmark', { recursive: true });
+await mkdir('.ux-guard-pipeline/benchmark', { recursive: true });
 await writeFile(
-  '.intentguard/benchmark/summary.json',
+  '.ux-guard-pipeline/benchmark/summary.json',
   JSON.stringify(summary, null, 2),
 );
 console.log(JSON.stringify({ ...summary, results: undefined }, null, 2));

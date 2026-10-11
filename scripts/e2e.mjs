@@ -8,8 +8,8 @@ import { startDemo, waitForURL, availablePort } from './process-utils.mjs';
 const port = await availablePort();
 const baseURL = `http://127.0.0.1:${port}`;
 const child = startDemo(port);
-const dir = await mkdtemp(join(tmpdir(), 'intentguard-e2e-'));
-const config = join(dir, 'intentguard.config.json');
+const dir = await mkdtemp(join(tmpdir(), 'ux-guard-pipeline-e2e-'));
+const config = join(dir, 'ux-guard-pipeline.config.json');
 await writeFile(
   config,
   JSON.stringify({

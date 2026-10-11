@@ -1,10 +1,10 @@
-import type { UXContract } from '@intentguard/contracts';
+import type { UXContract } from '@ux-guard-pipeline/contracts';
 import type {
   PageEvidence,
   DeterministicEvidence,
   Signal,
   ElementEvidence,
-} from '@intentguard/evidence';
+} from '@ux-guard-pipeline/evidence';
 export function evaluateRules(
   evidence: PageEvidence,
   contract: UXContract,

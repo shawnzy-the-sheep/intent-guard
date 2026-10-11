@@ -1,5 +1,5 @@
 {
-  "name": "intentguard-workspace",
+  "name": "ux-guard-pipeline-workspace",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -8,16 +8,16 @@
     "node": ">=24"
   },
   "scripts": {
-    "build": "tsc -b && pnpm --filter @intentguard/demo build",
-    "typecheck": "tsc -b && pnpm --filter @intentguard/demo typecheck",
+    "build": "tsc -b && pnpm --filter @ux-guard-pipeline/demo build",
+    "typecheck": "tsc -b && pnpm --filter @ux-guard-pipeline/demo typecheck",
     "test": "vitest run tests/unit",
     "test:integration": "vitest run tests/integration",
     "test:e2e": "node scripts/e2e.mjs",
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "demo:start": "pnpm --filter @intentguard/demo dev",
-    "intentguard": "node packages/cli/dist/index.js",
+    "demo:start": "pnpm --filter @ux-guard-pipeline/demo dev",
+    "ux-guard-pipeline": "node packages/cli/dist/index.js",
     "bench": "node scripts/benchmark.mjs"
   },
   "devDependencies": {

@@ -4,12 +4,12 @@ import sharp from 'sharp';
 import type {
   PageEvidence,
   DeterministicEvidence,
-} from '@intentguard/evidence';
+} from '@ux-guard-pipeline/evidence';
 import type {
   IntentEvaluation,
   VisualEvaluation,
-} from '@intentguard/evaluator';
-import type { Result, ErrorKind } from '@intentguard/shared';
+} from '@ux-guard-pipeline/evaluator';
+import type { Result, ErrorKind } from '@ux-guard-pipeline/shared';
 export interface RunReport {
   runId: string;
   contractId: string;
@@ -60,7 +60,7 @@ export function consoleReport(report: RunReport): string {
 }
 export function markdownReport(report: RunReport): string {
   return [
-    `# IntentGuard: ${md(report.contractId)}`,
+    `# ux-guard-pipeline: ${md(report.contractId)}`,
     '',
     `**${report.result}** · ${report.source} · ${report.viewport.width} × ${report.viewport.height}`,
     '',

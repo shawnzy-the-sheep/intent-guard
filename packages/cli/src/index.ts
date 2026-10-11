@@ -2,13 +2,13 @@
 import { Command } from 'commander';
 import { glob, mkdir, writeFile, access } from 'node:fs/promises';
 import { resolve, dirname } from 'node:path';
-import { loadConfig, runContract } from '@intentguard/core';
-import { loadContract, type UXContract } from '@intentguard/contracts';
-import { consoleReport, type RunReport } from '@intentguard/reporter';
-import { launchBrowser } from '@intentguard/playwright';
+import { loadConfig, runContract } from '@ux-guard-pipeline/core';
+import { loadContract, type UXContract } from '@ux-guard-pipeline/contracts';
+import { consoleReport, type RunReport } from '@ux-guard-pipeline/reporter';
+import { launchBrowser } from '@ux-guard-pipeline/playwright';
 const program = new Command()
-  .name('intentguard')
-  .description('CI for UX intent — evidence-backed semantic regression review')
+  .name('ux-guard-pipeline')
+  .description('Check UI hierarchy, status ownership and primary actions')
   .version('0.1.0');
 program
   .command('init')
@@ -17,7 +17,7 @@ program
   )
   .action(async () => {
     const starter = {
-      'intentguard.config.ts': `export default {\n  baseURL: 'http://localhost:5173',\n  contracts: ['intent/*.yaml'],\n  provider: 'none',\n  redact: ['[data-sensitive]', '.customer-email'],\n};\n`,
+      'ux-guard-pipeline.config.ts': `export default {\n  baseURL: 'http://localhost:5173',\n  contracts: ['intent/*.yaml'],\n  provider: 'none',\n  redact: ['[data-sensitive]', '.customer-email'],\n};\n`,
       'intent/task-details.yaml': `version: 1\nid: task-details\npage:\n  route: /demo/good\nuser:\n  role: operator\ngoal:\n  primary: understand_and_act_on_current_task\nentities:\n  current_task:\n    priority: primary\n    selectors: ["[data-entity='task']"]\n  parent_job:\n    priority: contextual\n    selectors: ["[data-entity='parent-job']"]\nactions:\n  continue_task:\n    priority: primary\n    selectors: ["[data-action='continue-task']"]\nintents:\n  - id: task-primary-focus\n    type: hierarchy\n    subject: current_task\n    relativeTo: parent_job\n    expectation: dominant\n  - id: parent-job-context\n    type: semantic_ownership\n    subject: parent_job\n    expectation: contextual\n  - id: continue-action-visible\n    type: action_discoverability\n    subject: continue_task\n    expectation: immediate\n`,
     };
     // Preflight all destinations before writing any file.
@@ -34,13 +34,17 @@ program
       await writeFile(path, content, { flag: 'wx' });
     }
     console.log(
-      'Created intentguard.config.ts and intent/task-details.yaml. Set baseURL and selectors for your application.',
+      'Created ux-guard-pipeline.config.ts and intent/task-details.yaml. Set baseURL and selectors for your application.',
     );
   });
 program
   .command('test [contractId]')
   .description('Run UX contracts in desktop Chromium')
-  .option('-c, --config <path>', 'Configuration file', 'intentguard.config.ts')
+  .option(
+    '-c, --config <path>',
+    'Configuration file',
+    'ux-guard-pipeline.config.ts',
+  )
   .option('--debug', 'Save sanitised model input and structured stage events')
   .option('--deterministic-only', 'Skip AI and report deterministic suspicion')
   .option('--provider <provider>', 'Override provider: none, mock, openai')
@@ -122,7 +126,7 @@ program
         JSON.stringify(reports, null, 2),
       );
       const summary = [
-        '# IntentGuard',
+        '# ux-guard-pipeline',
         '',
         '| Contract | Viewport | Result | Source |',
         '| --- | --- | --- | --- |',
@@ -145,7 +149,7 @@ program
   );
 program.parseAsync().catch((error: unknown) => {
   console.error(
-    `IntentGuard ERROR: ${error instanceof Error ? error.message : 'Unknown error'}`,
+    `ux-guard-pipeline ERROR: ${error instanceof Error ? error.message : 'Unknown error'}`,
   );
   process.exitCode = 1;
 });

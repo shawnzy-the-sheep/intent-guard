@@ -1,11 +1,11 @@
 {
-  "name": "@intentguard/rules",
+  "name": "@ux-guard-pipeline/rules",
   "version": "0.1.0",
   "private": true,
   "type": "module",
   "exports": "./dist/index.js",
   "dependencies": {
-    "@intentguard/contracts": "workspace:*",
-    "@intentguard/evidence": "workspace:*"
+    "@ux-guard-pipeline/contracts": "workspace:*",
+    "@ux-guard-pipeline/evidence": "workspace:*"
   }
 }

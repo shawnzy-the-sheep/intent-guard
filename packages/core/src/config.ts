@@ -1,7 +1,7 @@
 import { resolve } from 'node:path';
 import { createJiti } from 'jiti';
 import { z } from 'zod';
-import { IntentGuardError } from '@intentguard/shared';
+import { UxGuardPipelineError } from '@ux-guard-pipeline/shared';
 export const ConfigSchema = z
   .object({
     baseURL: z
@@ -11,7 +11,7 @@ export const ConfigSchema = z
         'Only HTTP(S) base URLs are allowed',
       ),
     contracts: z.array(z.string().min(1)).min(1).default(['intent/*.yaml']),
-    outputDir: z.string().default('.intentguard'),
+    outputDir: z.string().default('.ux-guard-pipeline'),
     viewports: z
       .array(
         z
@@ -33,20 +33,20 @@ export const ConfigSchema = z
     cache: z.boolean().default(true),
   })
   .strict();
-export type IntentGuardConfig = z.infer<typeof ConfigSchema>;
+export type UxGuardPipelineConfig = z.infer<typeof ConfigSchema>;
 export type ConfigInput = z.input<typeof ConfigSchema>;
 export function defineConfig(config: ConfigInput): ConfigInput {
   return config;
 }
 export async function loadConfig(
-  path = 'intentguard.config.ts',
-): Promise<IntentGuardConfig> {
+  path = 'ux-guard-pipeline.config.ts',
+): Promise<UxGuardPipelineConfig> {
   try {
     const jiti = createJiti(import.meta.url);
     const module = await jiti.import(resolve(path), { default: true });
     return ConfigSchema.parse(module);
   } catch (error) {
-    throw new IntentGuardError(
+    throw new UxGuardPipelineError(
       'CONTRACT_ERROR',
       `Cannot load ${path}: ${error instanceof Error ? error.message : 'Invalid configuration'}`,
     );

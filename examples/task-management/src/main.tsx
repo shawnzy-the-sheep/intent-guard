@@ -65,15 +65,15 @@ function App() {
       <header className="topbar">
         <a className="brand" href="/demo/good">
           <span className="brand-mark" aria-hidden="true">
-            i
+            ux
           </span>{' '}
-          IntentGuard <span className="brand-divider">/</span>{' '}
+          ux-guard-pipeline <span className="brand-divider">/</span>{' '}
           <span className="workspace-name">Task workspace</span>
         </a>
-        <span className="demo-badge">UX intent lab</span>
+        <span className="demo-badge">Layout demo</span>
       </header>
       <div className="lab-nav" role="region" aria-label="Demo controls">
-        <p className="eyebrow">Same task. Different meaning.</p>
+        <p className="eyebrow">Task layout examples</p>
         <nav aria-label="Demo variants">
           {(Object.keys(labels) as Variant[]).map((v) => (
             <a
@@ -165,13 +165,13 @@ function App() {
           {variant === 'good' || variant === 'action' ? job : null}
         </div>
         <footer className="context-note">
-          <span aria-hidden="true">◎</span> Presentation changes across
-          variants. Task data and actions stay identical.
+          <span aria-hidden="true">◎</span> Each example uses the same task data
+          and actions.
         </footer>
       </main>
       <footer className="lab-footer">
         <span>
-          IntentGuard <b>CI for UX intent.</b>
+          ux-guard-pipeline <b>UI regression checks</b>
         </span>
         <span>Task #1042 · Desktop demo</span>
       </footer>

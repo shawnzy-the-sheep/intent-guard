@@ -12,7 +12,7 @@ import { ConfigSchema } from '../../packages/core/src/config.js';
 let browser: Browser, server: Server, baseURL: string, dir: string;
 const html = `<!doctype html><html lang="en"><head><title>Evidence fixture</title></head><body><main><section data-entity="task" style="padding:40px"><h1>Task #1042</h1><p data-sensitive>private-secret-938</p><p class="customer-email">alice@example.com</p><p>Visible contact bob@example.com</p><input type="password" value="password-secret-731"/><button data-action="continue-task">Continue Task</button></section><aside data-entity="parent-job"><h2>Parent Job</h2><p role="status">Not Started</p></aside></main></body></html>`;
 beforeAll(async () => {
-  dir = await mkdtemp(join(tmpdir(), 'intentguard-test-'));
+  dir = await mkdtemp(join(tmpdir(), 'ux-guard-pipeline-test-'));
   server = createServer((req, res) => {
     res.writeHead(req.url?.startsWith('/404') ? 404 : 200, {
       'Content-Type': 'text/html',

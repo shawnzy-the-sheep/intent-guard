@@ -1,11 +1,11 @@
 {
-  "name": "@intentguard/contracts",
+  "name": "@ux-guard-pipeline/contracts",
   "version": "0.1.0",
   "private": true,
   "type": "module",
   "exports": "./dist/index.js",
   "dependencies": {
-    "@intentguard/shared": "workspace:*",
+    "@ux-guard-pipeline/shared": "workspace:*",
     "zod": "^4.1.0",
     "yaml": "^2.8.0"
   }

@@ -1,6 +1,6 @@
 # Engineering plan implementation status
 
-The source plan defines a v0.1 CLI release and a longer roadmap. This repository delivers the three-category first slice and selected reliability scaffolding.
+The source plan covers v0.1 and later releases. This repository implements the three v0.1 checks, plus caching, viewport configuration, a synthetic benchmark and CI.
 
 | Plan capability                                                | Status                                                         |
 | -------------------------------------------------------------- | -------------------------------------------------------------- |

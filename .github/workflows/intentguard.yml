@@ -1,0 +1,41 @@
+name: IntentGuard
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm build
+      - run: pnpm typecheck && pnpm lint && pnpm format:check
+      - run: pnpm test && pnpm test:integration && pnpm test:e2e
+      - run: pnpm bench
+      - name: Demo UX review (non-blocking semantic findings)
+        shell: bash
+        run: |
+          pnpm demo:start > /tmp/intentguard-demo.log 2>&1 &
+          demo_pid=$!
+          trap 'kill "$demo_pid" 2>/dev/null || true' EXIT
+          for i in {1..100}; do
+            if curl --fail --silent http://127.0.0.1:5173/demo/good > /dev/null; then break; fi
+            sleep 0.2
+          done
+          pnpm intentguard test task-details --provider mock --route /demo/hierarchy --debug
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: intentguard-evidence
+          path: .intentguard/
+          include-hidden-files: true
+          retention-days: 7

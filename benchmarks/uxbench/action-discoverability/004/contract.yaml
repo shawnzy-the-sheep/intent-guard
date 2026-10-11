@@ -1,0 +1,24 @@
+version: 1
+id: action-discoverability-004
+page:
+  route: /good.html
+user:
+  role: operator
+goal:
+  primary: act_on_current_task
+entities:
+  current_task:
+    priority: primary
+    selectors: ["[data-entity='task']"]
+  parent_job:
+    priority: contextual
+    selectors: ["[data-entity='parent-job']"]
+actions:
+  continue_task:
+    priority: primary
+    selectors: ["[data-action='continue-task']"]
+intents:
+  - id: action-discoverability-004-intent
+    type: action_discoverability
+    subject: continue_task
+    expectation: immediate

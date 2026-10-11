@@ -5,5 +5,8 @@ export default ts.config(
   { ignores: ['**/dist/**', '**/node_modules/**', '.intentguard/**'] },
   js.configs.recommended,
   ...ts.configs.recommended,
-  { languageOptions: { globals: { ...globals.node, ...globals.browser } }, rules: { '@typescript-eslint/no-explicit-any': 'error' } },
+  {
+    languageOptions: { globals: { ...globals.node, ...globals.browser } },
+    rules: { '@typescript-eslint/no-explicit-any': 'error' },
+  },
 );

@@ -1,0 +1,7 @@
+{
+  "good": "PASS",
+  "bad": "REVIEW",
+  "category": "semantic_ownership",
+  "labelStatus": "synthetic-author-expectation",
+  "independentHumanLabel": null
+}

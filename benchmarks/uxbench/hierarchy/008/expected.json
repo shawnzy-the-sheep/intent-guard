@@ -1,0 +1,7 @@
+{
+  "good": "PASS",
+  "bad": "REVIEW",
+  "category": "hierarchy",
+  "labelStatus": "synthetic-author-expectation",
+  "independentHumanLabel": null
+}

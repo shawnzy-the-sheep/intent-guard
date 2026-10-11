@@ -1,0 +1,7 @@
+{
+  "good": "PASS",
+  "bad": "REVIEW",
+  "category": "action_discoverability",
+  "labelStatus": "synthetic-author-expectation",
+  "independentHumanLabel": null
+}

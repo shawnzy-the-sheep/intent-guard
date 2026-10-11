@@ -75,6 +75,9 @@ importers:
       '@intentguard/core':
         specifier: workspace:*
         version: link:../core
+      '@intentguard/playwright':
+        specifier: workspace:*
+        version: link:../playwright
       '@intentguard/reporter':
         specifier: workspace:*
         version: link:../reporter

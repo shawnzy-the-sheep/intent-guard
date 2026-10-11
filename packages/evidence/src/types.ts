@@ -1,4 +1,9 @@
-export interface Rect { x: number; y: number; width: number; height: number }
+export interface Rect {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
 export interface ElementEvidence {
   id: string;
   tag: string;
@@ -6,7 +11,15 @@ export interface ElementEvidence {
   role: string | null;
   ariaLabel: string | null;
   rect: Rect;
-  style: { fontSize: string; fontWeight: string; color: string; backgroundColor: string; position: string; zIndex: string; opacity: string };
+  style: {
+    fontSize: string;
+    fontWeight: string;
+    color: string;
+    backgroundColor: string;
+    position: string;
+    zIndex: string;
+    opacity: string;
+  };
   visible: boolean;
   inViewport: boolean;
   interactive: boolean;
@@ -26,7 +39,11 @@ export interface Features {
   sticky: boolean;
   salience: number;
 }
-export interface Binding { id: string; priority: 'primary' | 'secondary' | 'contextual'; elementIds: string[] }
+export interface Binding {
+  id: string;
+  priority: 'primary' | 'secondary' | 'contextual';
+  elementIds: string[];
+}
 export interface PageEvidence {
   url: string;
   screenshotPath: string;
@@ -35,12 +52,24 @@ export interface PageEvidence {
   entities: Binding[];
   actions: Binding[];
   truncated: boolean;
-  accessibility: { violations: { id: string; impact: string | null; count: number; description: string }[]; passes: number };
+  accessibility: {
+    violations: {
+      id: string;
+      impact: string | null;
+      count: number;
+      description: string;
+    }[];
+    passes: number;
+  };
   accessibilityTree: string;
 }
 export interface Signal {
   intentId: string;
-  type: 'hierarchy' | 'semantic_ownership' | 'action_discoverability' | 'visibility';
+  type:
+    | 'hierarchy'
+    | 'semantic_ownership'
+    | 'action_discoverability'
+    | 'visibility';
   severity: 'LOW' | 'MEDIUM' | 'HIGH';
   explanation: string;
   evidenceIds: string[];

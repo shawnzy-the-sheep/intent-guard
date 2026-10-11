@@ -8,6 +8,7 @@
     "intentguard": "./dist/index.js"
   },
   "dependencies": {
+    "@intentguard/playwright": "workspace:*",
     "@intentguard/core": "workspace:*",
     "@intentguard/contracts": "workspace:*",
     "@intentguard/reporter": "workspace:*",

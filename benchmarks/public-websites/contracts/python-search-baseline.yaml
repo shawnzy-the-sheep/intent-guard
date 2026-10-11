@@ -1,0 +1,19 @@
+version: 1
+id: python-search-baseline
+page:
+  route: /
+user:
+  role: signed-out public visitor
+goal:
+  primary: Search Python documentation and website content
+entities: {}
+actions:
+  primary_action:
+    priority: primary
+    selectors:
+      - '#submit'
+intents:
+  - id: python-search-baseline-intent
+    type: action_discoverability
+    subject: primary_action
+    expectation: discoverable

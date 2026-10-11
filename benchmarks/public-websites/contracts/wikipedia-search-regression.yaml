@@ -1,0 +1,19 @@
+version: 1
+id: wikipedia-search-regression
+page:
+  route: /
+user:
+  role: signed-out public visitor
+goal:
+  primary: Search the encyclopedia from its landing page
+entities: {}
+actions:
+  primary_action:
+    priority: primary
+    selectors:
+      - form#search-form button[type=submit]
+intents:
+  - id: wikipedia-search-regression-intent
+    type: action_discoverability
+    subject: primary_action
+    expectation: discoverable

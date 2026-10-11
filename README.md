@@ -122,6 +122,8 @@ The browser tests cover collection, redaction, reports, caching, CLI results, an
 
 UXBench contains 20 synthetic good/bad pairs. `pnpm bench` runs all 40 states with the mock provider and saves metrics to `.ux-guard-pipeline/benchmark/summary.json`. Set `UX_GUARD_PIPELINE_BENCH_PROVIDER=openai` to evaluate them with a live model. The expected labels were written with the fixtures; they have not had independent human review. Mock benchmark results check pipeline behavior, not AI accuracy.
 
+Ten public-website cases cover Wikipedia, GOV.UK, Python.org, GitHub, and Firefox. Run `pnpm validate:websites` after building. The recorded run matched eight expectations; both GitHub cases were inconclusive because of truncated evidence and unavailable stylesheets. See [the cases, results, and limitations](benchmarks/public-websites/README.md). These runs use deterministic checks without a model.
+
 ## Current scope
 
 Version 0.1 includes the three checks, CLI, demo, reports, caching, multiple viewport support, and a GitHub Actions workflow. Diff-based execution, interaction-cost checks, comparisons across UI states, authenticated role fixtures, and a GitHub App are still pending.

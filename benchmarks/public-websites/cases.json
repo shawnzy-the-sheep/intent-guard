@@ -1,0 +1,64 @@
+[
+  {
+    "id": "wikipedia-search",
+    "url": "https://www.wikipedia.org/",
+    "type": "action_discoverability",
+    "subject": "form#search-form button[type=submit]",
+    "expectation": "discoverable",
+    "goal": "Search the encyclopedia from its landing page",
+    "rationale": "The search submit button should be available in the initial viewport. Language selection is also prominent, so this contract does not require search to outrank it.",
+    "mutation": "hide",
+    "baselineExpected": "PASS",
+    "regressionExpected": "REVIEW"
+  },
+  {
+    "id": "govuk-search",
+    "url": "https://www.gov.uk/",
+    "type": "action_discoverability",
+    "subject": "main .gem-c-search__submit",
+    "expectation": "discoverable",
+    "goal": "Find government information using the homepage search",
+    "rationale": "The homepage search submit button should remain available without scrolling, including with the initial cookie banner. No consent choice is made.",
+    "mutation": "offscreen",
+    "baselineExpected": "PASS",
+    "regressionExpected": "REVIEW"
+  },
+  {
+    "id": "python-search",
+    "url": "https://www.python.org/",
+    "type": "action_discoverability",
+    "subject": "#submit",
+    "expectation": "discoverable",
+    "goal": "Search Python documentation and website content",
+    "rationale": "The header search GO button should be an enabled action above the fold. This checks availability, not whether it is the page's most prominent action.",
+    "mutation": "disable",
+    "baselineExpected": "PASS",
+    "regressionExpected": "REVIEW"
+  },
+  {
+    "id": "github-repository",
+    "url": "https://github.com/microsoft/vscode",
+    "type": "hierarchy",
+    "subject": "main [itemprop=name] a",
+    "relativeTo": "main div[class*=HideWhenNarrow] > h2[class*=SidebarSection]",
+    "expectation": "dominant",
+    "goal": "Identify the repository before reading its contextual About information",
+    "rationale": "The repository name should carry more visual weight than an About sidebar heading. Any baseline suspicion is a heuristic disagreement to review, not proof of a GitHub defect.",
+    "mutation": "promote-context",
+    "baselineExpected": "PASS",
+    "regressionExpected": "REVIEW"
+  },
+  {
+    "id": "firefox-heading",
+    "url": "https://www.firefox.com/en-US/",
+    "type": "hierarchy",
+    "subject": "main h1",
+    "relativeTo": "main .has-home-intro-media .fl-superheading",
+    "expectation": "dominant",
+    "goal": "Read the product headline before its contextual introductory text",
+    "rationale": "The large product heading should dominate introductory copy. The controlled change makes the secondary copy into a large, fixed banner without changing its words.",
+    "mutation": "promote-context",
+    "baselineExpected": "PASS",
+    "regressionExpected": "REVIEW"
+  }
+]

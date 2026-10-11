@@ -18,7 +18,8 @@
     "format:check": "prettier --check .",
     "demo:start": "pnpm --filter @ux-guard-pipeline/demo dev",
     "ux-guard-pipeline": "node packages/cli/dist/index.js",
-    "bench": "node scripts/benchmark.mjs"
+    "bench": "node scripts/benchmark.mjs",
+    "validate:websites": "node scripts/validate-public-websites.mjs"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.0",

@@ -1,0 +1,418 @@
+{
+  "capturedAt": "2026-10-11T14:06:30.181Z",
+  "mode": "deterministic-only",
+  "liveConfigured": false,
+  "labels": "Authored expectations declared before execution; no independent human labels",
+  "cases": 10,
+  "matched": 8,
+  "falsePositiveSuspicions": 1,
+  "misses": 0,
+  "inconclusive": 1,
+  "errors": 0,
+  "results": [
+    {
+      "id": "wikipedia-search-baseline",
+      "url": "https://www.wikipedia.org/",
+      "finalURL": "https://www.wikipedia.org/",
+      "httpStatus": 200,
+      "variant": "baseline",
+      "type": "action_discoverability",
+      "selectors": {
+        "subject": "form#search-form button[type=submit]"
+      },
+      "selectorCounts": {
+        "subject": 1
+      },
+      "mutation": null,
+      "mutationApplied": false,
+      "expected": "PASS",
+      "actual": "PASS",
+      "matchesExpected": true,
+      "rationale": "The search submit button should be available in the initial viewport. Language selection is also prominent, so this contract does not require search to outrank it.",
+      "timestamp": "2026-10-11T14:05:26.210Z",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "explanation": "No relevant deterministic suspicion found; AI was not invoked.",
+      "evidenceIds": [],
+      "signals": [],
+      "incomplete": false,
+      "aiCalls": 0,
+      "source": "deterministic",
+      "latencyMs": 2786,
+      "artifacts": ".ux-guard-pipeline/public-websites/runs/f4f8b402-564e-4129-9e43-6b922ed4caa1-wikipedia-search-baseline-1280x800"
+    },
+    {
+      "id": "wikipedia-search-regression",
+      "url": "https://www.wikipedia.org/",
+      "finalURL": "https://www.wikipedia.org/",
+      "httpStatus": 200,
+      "variant": "regression",
+      "type": "action_discoverability",
+      "selectors": {
+        "subject": "form#search-form button[type=submit]"
+      },
+      "selectorCounts": {
+        "subject": 1
+      },
+      "mutation": "hide",
+      "mutationApplied": true,
+      "expected": "REVIEW",
+      "actual": "REVIEW",
+      "matchesExpected": true,
+      "rationale": "The search submit button should be available in the initial viewport. Language selection is also prominent, so this contract does not require search to outrank it.",
+      "timestamp": "2026-10-11T14:05:29.025Z",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "explanation": "Deterministic conflict: primary_action is present but hidden.",
+      "evidenceIds": ["e13", "e1"],
+      "signals": [
+        {
+          "intentId": "wikipedia-search-regression-intent",
+          "type": "visibility",
+          "severity": "HIGH",
+          "explanation": "primary_action is present but hidden.",
+          "evidenceIds": ["e13", "e1"],
+          "facts": {
+            "visible": false
+          },
+          "definitive": true
+        }
+      ],
+      "incomplete": false,
+      "aiCalls": 0,
+      "source": "deterministic",
+      "latencyMs": 2477,
+      "artifacts": ".ux-guard-pipeline/public-websites/runs/a79d9abe-ad74-4448-ae9f-2d9d51730777-wikipedia-search-regression-1280x800"
+    },
+    {
+      "id": "govuk-search-baseline",
+      "url": "https://www.gov.uk/",
+      "finalURL": "https://www.gov.uk/",
+      "httpStatus": 200,
+      "variant": "baseline",
+      "type": "action_discoverability",
+      "selectors": {
+        "subject": "main .gem-c-search__submit"
+      },
+      "selectorCounts": {
+        "subject": 1
+      },
+      "mutation": null,
+      "mutationApplied": false,
+      "expected": "PASS",
+      "actual": "PASS",
+      "matchesExpected": true,
+      "rationale": "The homepage search submit button should remain available without scrolling, including with the initial cookie banner. No consent choice is made.",
+      "timestamp": "2026-10-11T14:05:31.660Z",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "explanation": "No relevant deterministic suspicion found; AI was not invoked.",
+      "evidenceIds": [],
+      "signals": [],
+      "incomplete": false,
+      "aiCalls": 0,
+      "source": "deterministic",
+      "latencyMs": 2723,
+      "artifacts": ".ux-guard-pipeline/public-websites/runs/d7631907-4a3f-4db8-80e3-fed6c5cf1203-govuk-search-baseline-1280x800"
+    },
+    {
+      "id": "govuk-search-regression",
+      "url": "https://www.gov.uk/",
+      "finalURL": "https://www.gov.uk/",
+      "httpStatus": 200,
+      "variant": "regression",
+      "type": "action_discoverability",
+      "selectors": {
+        "subject": "main .gem-c-search__submit"
+      },
+      "selectorCounts": {
+        "subject": 1
+      },
+      "mutation": "offscreen",
+      "mutationApplied": true,
+      "expected": "REVIEW",
+      "actual": "REVIEW",
+      "matchesExpected": true,
+      "rationale": "The homepage search submit button should remain available without scrolling, including with the initial cookie banner. No consent choice is made.",
+      "timestamp": "2026-10-11T14:05:34.430Z",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "explanation": "Deterministic conflict: Declared action is outside the viewport, obscured, disabled or not interactive.",
+      "evidenceIds": ["e47"],
+      "signals": [
+        {
+          "intentId": "govuk-search-regression-intent",
+          "type": "action_discoverability",
+          "severity": "HIGH",
+          "explanation": "Declared action is outside the viewport, obscured, disabled or not interactive.",
+          "evidenceIds": ["e47"],
+          "facts": {
+            "rank": 0,
+            "available": false
+          },
+          "definitive": true
+        }
+      ],
+      "incomplete": false,
+      "aiCalls": 0,
+      "source": "deterministic",
+      "latencyMs": 2946,
+      "artifacts": ".ux-guard-pipeline/public-websites/runs/08a67ec1-1ff6-47cc-bf4e-6b48c74fd2a6-govuk-search-regression-1280x800"
+    },
+    {
+      "id": "python-search-baseline",
+      "url": "https://www.python.org/",
+      "finalURL": "https://www.python.org/",
+      "httpStatus": 200,
+      "variant": "baseline",
+      "type": "action_discoverability",
+      "selectors": {
+        "subject": "#submit"
+      },
+      "selectorCounts": {
+        "subject": 1
+      },
+      "mutation": null,
+      "mutationApplied": false,
+      "expected": "PASS",
+      "actual": "PASS",
+      "matchesExpected": true,
+      "rationale": "The header search GO button should be an enabled action above the fold. This checks availability, not whether it is the page's most prominent action.",
+      "timestamp": "2026-10-11T14:05:37.672Z",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "explanation": "No relevant deterministic suspicion found; AI was not invoked.",
+      "evidenceIds": [],
+      "signals": [],
+      "incomplete": false,
+      "aiCalls": 0,
+      "source": "deterministic",
+      "latencyMs": 14459,
+      "artifacts": ".ux-guard-pipeline/public-websites/runs/da32187b-3bec-45bf-80b1-f5348954d762-python-search-baseline-1280x800"
+    },
+    {
+      "id": "python-search-regression",
+      "url": "https://www.python.org/",
+      "finalURL": "https://www.python.org/",
+      "httpStatus": 200,
+      "variant": "regression",
+      "type": "action_discoverability",
+      "selectors": {
+        "subject": "#submit"
+      },
+      "selectorCounts": {
+        "subject": 1
+      },
+      "mutation": "disable",
+      "mutationApplied": true,
+      "expected": "REVIEW",
+      "actual": "REVIEW",
+      "matchesExpected": true,
+      "rationale": "The header search GO button should be an enabled action above the fold. This checks availability, not whether it is the page's most prominent action.",
+      "timestamp": "2026-10-11T14:05:52.163Z",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "explanation": "Deterministic conflict: Declared action is outside the viewport, obscured, disabled or not interactive.",
+      "evidenceIds": ["e13"],
+      "signals": [
+        {
+          "intentId": "python-search-regression-intent",
+          "type": "action_discoverability",
+          "severity": "HIGH",
+          "explanation": "Declared action is outside the viewport, obscured, disabled or not interactive.",
+          "evidenceIds": ["e13"],
+          "facts": {
+            "rank": 0,
+            "available": false
+          },
+          "definitive": true
+        }
+      ],
+      "incomplete": false,
+      "aiCalls": 0,
+      "source": "deterministic",
+      "latencyMs": 17995,
+      "artifacts": ".ux-guard-pipeline/public-websites/runs/c7466570-7087-4f0d-9650-745ac8beb5a2-python-search-regression-1280x800"
+    },
+    {
+      "id": "github-repository-baseline",
+      "url": "https://github.com/microsoft/vscode",
+      "finalURL": "https://github.com/microsoft/vscode",
+      "httpStatus": 200,
+      "variant": "baseline",
+      "type": "hierarchy",
+      "selectors": {
+        "subject": "main [itemprop=name] a",
+        "relativeTo": "main h2[class*=SidebarSection]:first-of-type"
+      },
+      "selectorCounts": {
+        "subject": 1,
+        "relativeTo": 6
+      },
+      "mutation": null,
+      "mutationApplied": false,
+      "expected": "PASS",
+      "actual": "REVIEW",
+      "matchesExpected": false,
+      "rationale": "The repository name should carry more visual weight than an About sidebar heading. Any baseline suspicion is a heuristic disagreement to review, not proof of a GitHub defect.",
+      "timestamp": "2026-10-11T14:06:10.417Z",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "explanation": "Deterministic suspicion (semantic judgment skipped): Contextual element has greater salience than the expected dominant entity (0.40 vs 0.14).",
+      "evidenceIds": ["e96", "e100"],
+      "signals": [
+        {
+          "intentId": "github-repository-baseline-intent",
+          "type": "hierarchy",
+          "severity": "MEDIUM",
+          "explanation": "Contextual element has greater salience than the expected dominant entity (0.40 vs 0.14).",
+          "evidenceIds": ["e96", "e100"],
+          "facts": {
+            "primarySalience": 0.1397,
+            "contextualSalience": 0.3983,
+            "ratio": 1.15
+          },
+          "definitive": false
+        }
+      ],
+      "incomplete": false,
+      "aiCalls": 0,
+      "source": "deterministic",
+      "latencyMs": 5499,
+      "artifacts": ".ux-guard-pipeline/public-websites/runs/96662ae5-17f0-41d1-abe0-fb3a5a4d661b-github-repository-baseline-1280x800"
+    },
+    {
+      "id": "github-repository-regression",
+      "url": "https://github.com/microsoft/vscode",
+      "finalURL": "https://github.com/microsoft/vscode",
+      "httpStatus": 200,
+      "variant": "regression",
+      "type": "hierarchy",
+      "selectors": {
+        "subject": "main [itemprop=name] a",
+        "relativeTo": "main h2[class*=SidebarSection]:first-of-type"
+      },
+      "selectorCounts": {
+        "subject": 1,
+        "relativeTo": 5
+      },
+      "mutation": "promote-context",
+      "mutationApplied": true,
+      "expected": "REVIEW",
+      "actual": "INCONCLUSIVE",
+      "matchesExpected": false,
+      "rationale": "The repository name should carry more visual weight than an About sidebar heading. Any baseline suspicion is a heuristic disagreement to review, not proof of a GitHub defect.",
+      "timestamp": "2026-10-11T14:06:16.321Z",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "explanation": "Required contract selectors did not resolve to unmasked evidence, or evidence exceeded the collection limit.",
+      "evidenceIds": [],
+      "signals": [],
+      "incomplete": true,
+      "aiCalls": 0,
+      "source": "deterministic",
+      "latencyMs": 5288,
+      "artifacts": ".ux-guard-pipeline/public-websites/runs/e7f6ec1b-f01c-4dba-b2fe-07965580d286-github-repository-regression-1280x800"
+    },
+    {
+      "id": "firefox-heading-baseline",
+      "url": "https://www.firefox.com/en-US/",
+      "finalURL": "https://www.firefox.com/en-US/",
+      "httpStatus": 200,
+      "variant": "baseline",
+      "type": "hierarchy",
+      "selectors": {
+        "subject": "main h1",
+        "relativeTo": "main section:first-of-type p:first-of-type"
+      },
+      "selectorCounts": {
+        "subject": 1,
+        "relativeTo": 13
+      },
+      "mutation": null,
+      "mutationApplied": false,
+      "expected": "PASS",
+      "actual": "PASS",
+      "matchesExpected": true,
+      "rationale": "The large product heading should dominate introductory copy. The controlled change makes the secondary copy into a large, fixed banner without changing its words.",
+      "timestamp": "2026-10-11T14:06:21.667Z",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "explanation": "No relevant deterministic suspicion found; AI was not invoked.",
+      "evidenceIds": [],
+      "signals": [],
+      "incomplete": false,
+      "aiCalls": 0,
+      "source": "deterministic",
+      "latencyMs": 4553,
+      "artifacts": ".ux-guard-pipeline/public-websites/runs/40f6a063-0167-4527-86ed-657de13d93a3-firefox-heading-baseline-1280x800"
+    },
+    {
+      "id": "firefox-heading-regression",
+      "url": "https://www.firefox.com/en-US/",
+      "finalURL": "https://www.firefox.com/en-US/",
+      "httpStatus": 200,
+      "variant": "regression",
+      "type": "hierarchy",
+      "selectors": {
+        "subject": "main h1",
+        "relativeTo": "main section:first-of-type p:first-of-type"
+      },
+      "selectorCounts": {
+        "subject": 1,
+        "relativeTo": 13
+      },
+      "mutation": "promote-context",
+      "mutationApplied": true,
+      "expected": "REVIEW",
+      "actual": "REVIEW",
+      "matchesExpected": true,
+      "rationale": "The large product heading should dominate introductory copy. The controlled change makes the secondary copy into a large, fixed banner without changing its words.",
+      "timestamp": "2026-10-11T14:06:26.326Z",
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      },
+      "explanation": "Deterministic suspicion (semantic judgment skipped): Contextual element has greater salience than the expected dominant entity (0.95 vs 0.00).",
+      "evidenceIds": ["e50", "e207"],
+      "signals": [
+        {
+          "intentId": "firefox-heading-regression-intent",
+          "type": "hierarchy",
+          "severity": "MEDIUM",
+          "explanation": "Contextual element has greater salience than the expected dominant entity (0.95 vs 0.00).",
+          "evidenceIds": ["e50", "e207"],
+          "facts": {
+            "primarySalience": 0,
+            "contextualSalience": 0.9489,
+            "ratio": 1.15
+          },
+          "definitive": false
+        }
+      ],
+      "incomplete": false,
+      "aiCalls": 0,
+      "source": "deterministic",
+      "latencyMs": 3319,
+      "artifacts": ".ux-guard-pipeline/public-websites/runs/80ac9f75-e2ff-4c4f-acf7-96f62842f748-firefox-heading-regression-1280x800"
+    }
+  ]
+}

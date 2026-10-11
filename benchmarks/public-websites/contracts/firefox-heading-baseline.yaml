@@ -1,0 +1,24 @@
+version: 1
+id: firefox-heading-baseline
+page:
+  route: /en-US/
+user:
+  role: signed-out public visitor
+goal:
+  primary: Read the product headline before its contextual introductory text
+entities:
+  primary:
+    priority: primary
+    selectors:
+      - main h1
+  context:
+    priority: contextual
+    selectors:
+      - main .has-home-intro-media .fl-superheading
+actions: {}
+intents:
+  - id: firefox-heading-baseline-intent
+    type: hierarchy
+    subject: primary
+    relativeTo: context
+    expectation: dominant

@@ -1,0 +1,19 @@
+version: 1
+id: govuk-search-regression
+page:
+  route: /
+user:
+  role: signed-out public visitor
+goal:
+  primary: Find government information using the homepage search
+entities: {}
+actions:
+  primary_action:
+    priority: primary
+    selectors:
+      - main .gem-c-search__submit
+intents:
+  - id: govuk-search-regression-intent
+    type: action_discoverability
+    subject: primary_action
+    expectation: discoverable
